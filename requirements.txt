@@ -1,0 +1,4 @@
+Django==2.0.7
+Pillow==5.2.0
+pytz==2018.5
+whitenoise==3.3.1
