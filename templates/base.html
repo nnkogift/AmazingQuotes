@@ -9,7 +9,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <title> John Deo Life Coach Template </title>
+    <title> Amazing Quotes | {% block title %}{% endblock title %} </title>
     <!-- Bootstrap -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <!-- Style CSS -->
@@ -36,7 +36,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-8 col-md-7 col-sm-6 col-xs-12">
-                    <p class="welcome-text">Welcome to life coach website.</p>
+                    <p class="welcome-text">Welcome to Amazing Quotes Website.</p>
                 </div>
                 <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
                     <ul>
@@ -62,7 +62,7 @@
             <div class="row">
                 <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
                     <div class="logo">
-                        <a href="index.html"><img src="./images/logo.png" alt=""> </a>
+                        <a href="{% url 'home' %}"><img src="{% static '/images/logo.png' %}" alt=""> </a>
                     </div>
                 </div>
                 <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12">
@@ -71,35 +71,17 @@
                         <div id="navigation">
                             <ul>
                                 <li class="active"><a href="index.html">Home</a></li>
-                                <li class="has-sub"><a href="#">Coaching</a>
+                                <li class="has-sub"><a href="#">Services</a>
                                     <ul>
-                                        <li><a href="coaching-list.html">Coaching List</a></li>
-                                        <li><a href="coaching-single.html">Coaching Single</a></li>
+                                        <li><a href="coaching-list.html">Coaching</a></li>
+                                        <li><a href="coaching-single.html">Amazing Products</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="about.html">About me</a></li>
-                                <li class="has-sub"><a href="#">Article</a>
-                                    <ul>
-                                        <li><a href="blog-default.html">Articles</a></li>
-                                        <li><a href="blog-single.html">Article Single</a></li>
-                                    </ul>
+                                <li><a href="about.html">About us</a></li>
+                                <li><a href="#">Blog</a>
                                 </li>
-                                <li class="has-sub"><a href="#">Pages</a>
-                                    <ul>
-                                        <li><a href="testimonials.html">Client Stories</a> </li>
-                                        <li><a href="events.html">Events</a> </li>
-                                        <li><a href="event-single.html">Event Single</a> </li>
-                                         <li><a href="books.html">books</a> </li>
-                                       <li><a href="podcast.html">Podcast List</a></li>
-                                        <li><a href="podcast-single.html">Podcast Single</a></li>
-                                        <li><a href="video-gallery.html">Video Gallery</a> </li>
-                                       <li><a href="accordion.html">Accordion</a> </li>
-                                        <li><a href="404-page.html">404 page</a> </li>
-                                        <li><a href="styleguide.html">styleguide</a> </li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact-us.html">Ask me</a></li>
-                                <li><a href="template-feature.html">Template Feature</a></li>
+                                <li><a href="about.html">Our Events</a></li>
+                                <li><a href="about.html">Contact us</a></li>
                             </ul>
                         </div>
                     </div>
@@ -132,7 +114,7 @@
             <div class="row">
                 <!-- footer-contact links -->
                 <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="ft-logo"><img src="./images/ft_logo.png" alt=""></div>
+                    <div class="ft-logo"><img src="{% static '/images/ft_logo.png' %}" alt=""></div>
                     <div class="footer-widget">
                         <div class="contact-info">
                             <span class="contact-text">951 Meadow View Drive Bristol,USA06010 </span>
@@ -151,15 +133,15 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <ul>
                                     <li><a href="#">Home </a></li>
-                                    <li><a href="#">Coaching</a></li>
+                                    <li><a href="#">Services</a></li>
                                     <li><a href="#">About</a></li>
-                                    <li><a href="#">Article</a></li>
+                                    <li><a href="#">Blog</a></li>
                                 </ul>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <ul>
-                                    <li><a href="#">Podcast</a></li>
-                                    <li><a href="#">Books</a></li>
+                                    <li><a href="#">Events</a></li>
+                                    <li><a href="#">Contact us</a></li>
                                     <li><a href="#">Ask me</a></li>
                                 </ul>
                             </div>
@@ -189,7 +171,8 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                     <div class="tiny-footer">
-                        <p>Copyright © All Rights Reserved 2020 Template Design by
+                        <p>Copyright © Amazing Quotes.
+                            </br> Template Design by
                             <a href="https://easetemplate.com/" target="_blank" class="copyrightlink">EaseTemplate</a></p>
                     </div>
                 </div>

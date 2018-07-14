@@ -1,18 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block title %}home{% endblock title %}
 {% block body %}
     <!-- slider -->
     <div class="slider">
         <div class="owl-carousel owl-one owl-theme">
             <div class="item">
-                <div class="slider-img"> <img src="./images/slider_1.jpg" alt=""></div>
+                <div class="slider-img"> <img src="{% static 'images/slider_1.jpg' %}" alt=""></div>
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 pull-right">
                             <div class="slider-captions">
-                                <h1 class="slider-title">I Am John Deo</h1>
-                                <h3>Your Life Coach</h3>
+                                <h1 class="slider-title">We are Amazing Quotes</h1>
+                                <h3>We motivate people to become better</h3>
                                 <p class="hidden-sm hidden-xs hidden-md">Close the gap between where you are today & where you want to be...</p>
-                                <a href="#" class="btn btn-primary  hidden-xs">Get Template</a>
+                                <a href="#" class="btn btn-primary  hidden-xs">Learn More</a>
                             </div>
                            
                         </div>
@@ -20,35 +22,35 @@
                 </div>
             </div>
             <div class="item">
-                <div class="slider-img"> <img src="./images/slider_2.jpg" alt=""></div>
+                <div class="slider-img"> <img src="{% static 'images/slider_2.jpg' %}" alt=""></div>
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 pull-right">
                              <div class="slider-captions">
-                                <h1 class="slider-title">Design The Life You Want</h1>
-                                <h3>Read My Latest Book</h3>
-                                <p class="hidden-sm hidden-xs hidden-md">Enduring, energetic love isn't something you discover of good fortune — it's something you make.</p>
-                                <a href="#" class="btn btn-primary hidden-xs">Shop Now</a>
+                                <h1 class="slider-title">Quote of the Day</h1>
+{#                                <h3>Read My Latest Book</h3>#}
+{#                                <p class="hidden-sm hidden-xs hidden-md">Enduring, energetic love isn't something you discover of good fortune — it's something you make.</p>#}
+{#                                <a href="#" class="btn btn-primary hidden-xs">Shop Now</a>#}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="item">
-                <div class="slider-img"> <img src="./images/slider_3.jpg" alt=""></div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 pull-right">
-                            <div class="slider-captions">
-                                <h1 class="slider-title">Life Coach Website Template</h1>
-                                <h3>Free Website Templates</h3>
-                                <p class="hidden-sm hidden-xs hidden-md">Nunc utnisi sapivamus auctor hendrerit feliseu interlente squesed aliquet velitin viverraorci.</p>
-                                <a href="#" class="btn btn-primary  hidden-xs">Download Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+{#            <div class="item">#}
+{#                <div class="slider-img"> <img src=".{% static 'images/slider_3.jpg' %}" alt=""></div>#}
+{#                <div class="container">#}
+{#                    <div class="row">#}
+{#                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 pull-right">#}
+{#                            <div class="slider-captions">#}
+{#                                <h1 class="slider-title">Life Coach Website Template</h1>#}
+{#                                <h3>Free Website Templates</h3>#}
+{#                                <p class="hidden-sm hidden-xs hidden-md">Nunc utnisi sapivamus auctor hendrerit feliseu interlente squesed aliquet velitin viverraorci.</p>#}
+{#                                <a href="#" class="btn btn-primary  hidden-xs">Download Now</a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
         </div>
     </div>
     <!-- /.slider -->
@@ -59,7 +61,7 @@
                 <!-- coach-service -->
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
                     <div class="coach-service-block">
-                        <div class="coach-service-img"><a href="#" class="imghover"><img src="./images/coach_service_img_1.jpg" alt="" class="img-responsive"></a></div>
+                        <div class="coach-service-img"><a href="#" class="imghover"><img src="{% static '/images/coach_service_img_1.jpg' %}" alt="" class="img-responsive"></a></div>
                         <div class="coach-service-content">
                             <span class="coach-service-meta text-primary">Life Coaching</span>
                             <h4 class="coach-service-title"><a href="#">Every Single Incredible 
@@ -71,7 +73,7 @@
                 <!-- coach-service -->
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
                     <div class="coach-service-block">
-                        <div class="coach-service-img"><a href="#" class="imghover"><img src="./images/coach_service_img_2.jpg" alt="" class="img-responsive"></a></div>
+                        <div class="coach-service-img"><a href="#" class="imghover"><img src="{% static '/images/coach_service_img_2.jpg' %}" alt="" class="img-responsive"></a></div>
                         <div class="coach-service-content">
                             <span class="coach-service-meta text-default">Relationship 
 </span>
@@ -84,7 +86,7 @@ You Deserve</a></h4>
                 <!-- coach-service -->
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
                     <div class="coach-service-block">
-                        <div class="coach-service-img"><a href="#" class="imghover"><img src="./images/coach_service_img_3.jpg" alt="" class="img-responsive"></a></div>
+                        <div class="coach-service-img"><a href="#" class="imghover"><img src="{% static '/images/coach_service_img_3.jpg' %}" alt="" class="img-responsive"></a></div>
                         <div class="coach-service-content">
                             <span class="coach-service-meta text-yellow">Leadership</span>
                             <h4 class="coach-service-title"><a href="#">Being A Leader With Clear 
@@ -115,7 +117,7 @@ Vision & Guide Their Team</a></h4>
                 <!-- about-profile -->
                 <div class="col-lg-offset-1 col-lg-4 col-md-offset-1 col-md-4 col-sm-12 col-xs-12">
                     <div class="profile-img">
-                        <img src="./images/profile_img.jpg" alt="" class="img-responsive">
+                        <img src="{% static '/images/profile_img.jpg' %}" alt="" class="img-responsive">
                     </div>
                 </div>
                 <!-- /.about-profile -->
@@ -208,7 +210,7 @@ Vision & Guide Their Team</a></h4>
                                         </div>
                                     </div>
                                     <div class="col-lg-offset-1 col-lg-4 col-md-offset-1 col-md-4 col-sm-6 col-xs-12">
-                                        <a href="#"> <img src="./images/testi_img_1.jpg" alt="" class="img-responsive" 
+                                        <a href="#"> <img src="{% static '/images/testi_img_1.jpg' %}" alt="" class="img-responsive"
                                 ></a>
                                     </div>
                                 </div>
@@ -228,7 +230,7 @@ Vision & Guide Their Team</a></h4>
                                         </div>
                                     </div>
                                     <div class="col-lg-offset-1 col-lg-4 col-md-offset-1 col-md-4 col-sm-6 col-xs-12">
-                                        <a href="#"> <img src="./images/testi_img_2.jpg" alt="" class="img-responsive" 
+                                        <a href="#"> <img src="{% static '/images/testi_img_2.jpg' %}" alt="" class="img-responsive"
                               ></a>
                                     </div>
                                 </div>
@@ -248,7 +250,7 @@ Vision & Guide Their Team</a></h4>
                                         </div>
                                     </div>
                                     <div class="col-lg-offset-1 col-lg-4 col-md-offset-1 col-md-4 col-sm-6 col-xs-12">
-                                        <a href="#"> <img src="./images/testi_img_3.jpg" alt="" class="img-responsive" 
+                                        <a href="#"> <img src="{% static '/images/testi_img_3.jpg' %}" alt="" class="img-responsive"
                                ></a>
                                     </div>
                                 </div>
@@ -275,7 +277,7 @@ Vision & Guide Their Team</a></h4>
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                     <div class="posthome-img">
-                        <img src="./images/post_home_img_1.jpg" alt="" class="img-responsive">
+                        <img src="{% static '/images/post_home_img_1.jpg' %}" alt="" class="img-responsive">
                         <div class="post-caption">
                             <a href="#">Read All Articles</a>
                         </div>
@@ -337,7 +339,7 @@ Vision & Guide Their Team</a></h4>
                 <!-- video-img -->
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopl nopr">
                     <div class="video-img">
-                        <img src="./images/video_img_1.jpg" alt="" class="img-responsive">
+                        <img src="{% static '/images/video_img_1.jpg' %}" alt="" class="img-responsive">
                         <a id="play-video" class="video-play-button" href="#"> <span><i class="fa fa-play"></i></span>
 </a>
                         <div id="video-overlay" class="video-overlay">
@@ -349,7 +351,7 @@ Vision & Guide Their Team</a></h4>
                 <!-- video-img -->
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopl nopr">
                     <div class="video-img">
-                        <img src="./images/video_img_2.jpg" alt="" class="img-responsive">
+                        <img src="{% static '/images/video_img_2.jpg' %}" alt="" class="img-responsive">
                         <a id="play-video2" class="video-play-button" href="#">  <span><i class="fa fa-play"></i></span>
 </a>
                         <div id="video-overlay" class="video-overlay">
@@ -361,7 +363,7 @@ Vision & Guide Their Team</a></h4>
                 <!-- video-img -->
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopr nopl">
                     <div class="video-img">
-                        <img src="./images/video_img_3.jpg" alt="" class="img-responsive">
+                        <img src="{% static '/images/video_img_3.jpg' %}" alt="" class="img-responsive">
                         <a id="play-video3" class="video-play-button" href="#"><span><i class="fa fa-play"></i></span>
 </a>
                         <div id="video-overlay" class="video-overlay">
