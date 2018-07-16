@@ -30,3 +30,12 @@ chris
 scope
 link with social media
 
+
+COLOR CODES
+ Default- B81C29
+ Primary - 3B4450
+ Secondary - 888582
+ Heading - #272d2c
+ Paragraph - #525756
+
+
