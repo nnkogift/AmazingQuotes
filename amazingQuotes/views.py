@@ -6,7 +6,12 @@ from django.shortcuts import render
 
 
 def home_view(request):
-    return render(request, 'index.html')
+    return render(request, 'index.html', {})
+
+
+def custom_404(request):
+    return render(request, '404-page.html', {})
+
 #products
 
 #about

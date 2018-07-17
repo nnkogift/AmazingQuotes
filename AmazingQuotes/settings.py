@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-#SECRET_KEY = '3l!d2_lez$#_y4kv597_p_&a^!xhbtu3uuyab(!)6l@tgzu6e+'
+# SECRET_KEY = '3l!d2_lez$#_y4kv597_p_&a^!xhbtu3uuyab(!)6l@tgzu6e+'
 
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
@@ -35,9 +35,13 @@ DATABASES = {
 }
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
+# DEBUG = False
 
-ALLOWED_HOSTS = []
+ADMINS = [('Gift', 'nnkogift@gmail.com')]
+
+MANAGERS = [('Gift', 'nnkogift@gmail.com')]
+
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -61,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware'
 ]
 
 ROOT_URLCONF = 'AmazingQuotes.urls'
@@ -143,6 +148,19 @@ STATICFILES_DIRS = [
 ]
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+#email setting
+EMAIL_HOST = config('EMAIL_HOST', default='smtp.google.com')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='gianttallY', cast=str)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='nnkogift', cast=str)
+EMAIL_PORT = config('EMAIL_PORT', default='587', cast=str)
+SERVER_EMAIL = config('SERVER_EMAIL', default='nnkogift@gmail.com', cast=str)
+
+ # = 'gmail.com'
+ # = 'gianttallY'
+ # = 'nnkogift'
+ # = 587
+ # = 'nnkogift@gmail.com'
 
 # Configure Django App for Heroku.
 import django_heroku
