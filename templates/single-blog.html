@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load threadedcomments_tags %}
+{% load comments i18n %}
+{% load widget_tweaks %}
+{% block title %}Blog Post{% endblock title %}
+{% block body %}
+    <!-- page-header -->
+    <div class="post-pageheader" style="background: url({% static 'images/blog1.jpg' %}) no-repeat;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="">
+                        <!-- post block -->
+                        <div class="post-content">
+                            {% get_comment_count for post as count %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.page-header-->
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+
+                    <h1 class="post-title text-white"><a>{{ post.title }}</a></h1>
+                    <div class="meta">
+                        <span class="meta-date"><i class="fa fa-calendar"></i> Posted {{ post.timestamp | timesince }} ago </span>
+                        <span>| &nbsp; &nbsp;</span>
+                        <span class="meta-date"><i class="fa fa-comments-o"></i> &nbsp;{% if count is 1 %}{{ count }} Comment {% else %}{{ count }} Comments{% endif %}</span>
+                    <div class="meta"><a href="#" class="meta-categories text-primary">{{ post.category }}</a></div>
+                    </div><br/>
+                     <div class="img-responsive"><img src="{{ post.image.url }}"></div>
+                        <div class="post-holder">
+                            <p>
+                                {{ post.content | linebreaks |rjust:0 }}
+                            </p>
+                        </div>
+                        <div class="post-navigation">
+
+                        </div>
+
+                        <!--comments start-->
+                        <div class="comment-area">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="">
+                                        {% if count is 1 %}
+                                            <h3 class="mb30"> {{ count }} Comment</h3>
+                                        {% else %}
+                                            <h5 class="mb30"> {{ count }} Comments</h5>
+                                        {% endif %}
+
+                                        {% get_comment_list for post as list %}
+                                        {% for comment in list %}
+                                            <ul class="comment-list">
+                                                <li>
+                                                    <div class="comment-author"><img class="comment_logo" src="{% static 'images/user.png' %}" alt="" class="img-circle"></div>
+                                                    <div class="comment-info">
+                                                        <div class="comment-header">
+                                                            <h5 class="comment-title">{{ comment.user_name }}</h5>
+                                                            <span class="comment-meta-date">{{ comment.submit_date }}</span>
+                                                        </div>
+                                                        <div class="comment-content">
+                                                            <p>{{ comment.comment }}</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--comments close-->
+                        <!-- leave comments -->
+                        <div class="leave-comments">
+                            <h3>Leave A Reply</h3>
+                            {% get_comment_form for post as commentForm %}
+                            <form action="{%  comment_form_target %}" method="post">{% csrf_token %}
+                                {% if next %}
+                                    <div class="form-group"></div>
+                                {% endif %}
+                                {% for field in commentForm %}
+                                    {% if field.is_hidden %}
+                                        <div>{{ field }}</div>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if field.errors %}{{ field.errors }}{% endif %}
+                                {% if field.errors %} class="error"{% endif %}
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-md-6 col-xs-12">
+                                        <div class="form-group">
+                                            {% render_field commentForm.name class='form-control' name='name' id='name' placeholder="Your Name" %}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-md-6 col-xs-12">
+                                        <div class="form-group">
+                                            {% render_field commentForm.email class='form-control' name='email' id='email' placeholder="Your Email" %}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-md-12 col-xs-12 mb20">
+                                        <div class="form-group">
+                                            {% render_field commentForm.comment class='form-control' name='comment' id='message' placeholder="Message" %}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-md-6 col-xs-12">
+                                        <div class="form-group">
+                                            <input type="hidden" name="next" value="{% url 'home:single_post' id=post.id %}" class="form-control"/>
+                                            <button id="singlebutton" name="singlebutton" class="btn btn-primary">Leave Reply</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.leave comments -->
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock body %}

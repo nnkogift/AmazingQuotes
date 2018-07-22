@@ -8,7 +8,7 @@ from django.db import models
 class Post(models.Model):
     post_category = {
         ('RELATIONSHIP', 'Relationship'),
-        ('LIFE', 'Life Coaching'),
+        ('LIFE COACHING', 'Life Coaching'),
         ('LEADERSHIP', 'Leadership'),
         ('ENTREPRENEURSHIP', 'Entrepreneurship')
     }

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load threadedcomments_tags %}
+{% load comments i18n %}
+{% block title %} Our Blog{% endblock title %}
+{% block body %}
+    <!-- page-header -->
+    <div class="post-pageheader" style="background: url({% static '/images/blog2.jpg' %}) no-repeat;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="">
+                        <!-- post block -->
+                        <div class="post-content">
+                            <h1 class="post-title"><a href="#" class="title text-white">Our Blog</a></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.page-header-->
+    <!-- categories -->
+    <div class="bg-light pdt30 ptb30 ">
+        <div class="container">
+{#            <div class="row">#}
+{#                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right mb30">#}
+{#                    <form>#}
+{#                        <div class="select-option form-group">#}
+{#                            <select name="select" class="form-control">#}
+{#                                <option value="">Select Categories</option>#}
+{#                                <option value="">Life Coaching</option>#}
+{#                                <option value="">Leadership</option>#}
+{#                                <option value="">Business Coaching</option>#}
+{#                            </select>#}
+{#                        </div>#}
+{#                    </form>#}
+{#                </div>#}
+{#            </div>#}
+        </div>
+    </div>
+    <!-- categories -->
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                {% if posts %}
+                    {% for post in posts %}
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                            <div class="post-block">
+                                <!-- post block -->
+                                <div class="post-img"><a href="#" class="imghover"><img src="{{ post.image.url }}" alt="" class="img-responsive"></a></div>
+                                <div class="post-content">
+                                    <div class="meta"><a href="#" class="meta-categories text-primary">{{ post.category }}</a></div>
+                                    <h3 class="post-title"><a href="{% url 'home:single_post' id=post.id %}" class="title">{{ post.title }}</a></h3>
+                                    <div class="meta">
+                                        <span class="meta-date"><i class="fa fa-calendar"></i> {{ post.timestamp | date }} </span>
+                                        <span>| &nbsp; &nbsp;</span>
+                                        {% get_comment_count for post as count %}
+                                        <span class="meta-date"><i class="fa fa-comments-o"></i> {% if count is 1 %}{{ count }} Comment {% else %}{{ count }}{% endif %}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="st-pagination">
+                                <ul class="pagination">
+                                <li><a href="?page=1">&laquo;</a> </li>
+                                {% if posts.has_previous %}
+                                    <li><a href="?page=1">&laquo;</a> </li>
+                                    <li ><a href="?page={{ posts.previous_page_number }}">{{ posts.previous_page_number }}</a></li>{% endif %}
+                                    <li class="active"><a href="?page={{ posts.number }}">{{ posts.number }}</a></li>
+                                    {% if posts.has_next %}
+                                        <li><a href="?page={{ posts.next_page_number }}">{{ posts.next_page_number }}</a></li>
+                                        {% endif %}
+                                    <li><a href="?page={{ posts.paginator.num_pages }}">&raquo;</a> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <h4>There are No posts For now. Check back later!</h4>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                {% endif %}
+        </div>
+    </div>
+{% endblock body %}

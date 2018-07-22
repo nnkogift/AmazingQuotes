@@ -16,7 +16,7 @@ class PostViews:
                                         Q(user_post__first_name__icontains=searchq) |
                                         Q(user_post__last_name__icontains=searchq)).distinct()
 
-        paginator = Paginator(posts, 4) # 4 posts per page
+        paginator = Paginator(posts, 10)  # 4 posts per page
         page = page_get(request)
         posts = paginator.get_page(page)
 

@@ -1,1 +1,21 @@
-<h1>CUSTOM 404 PAGE</h1>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Page not Found {% endblock title %}
+{% block body %}
+    <!-- 404 error section -->
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="error-block">
+                        <h2 class="error-text">OOoooooopsssss....Page Not Found! </h2>
+                        <p class="lead">The page doesn’t exist or some other error occured. Go to our homepage or go back to previous page.</p>
+                        <h1 class="error-title">404 </h1>
+                        <a href="{% url  'home:mainPage' %}" class="btn btn-secondary btn-lg">Back To Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./404 error section -->
+{% endblock body %}
