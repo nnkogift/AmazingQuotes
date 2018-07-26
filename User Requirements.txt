@@ -12,7 +12,7 @@ Multipurpose
 - slider for everyday messages
 - subscription capabilites
 - order placement(without payment)
-- Events show( eg annual youth camps)
+- Events show (eg annual youth camps)
 - Support ability(enable users to support, partnering and such.)
 Core values
 - inspire people to do to become

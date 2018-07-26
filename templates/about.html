@@ -1,184 +1,221 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
+{% load widget_tweaks %}
 {% block title %} About{% endblock title %}
 {% block body %}
-    {% for comp in company %}
-        <!-- page-header -->
-        <div class="pageheader-about" style="background:url({% static '/images/about.jpeg' %}) no-repeat;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <div class="about-caption">
-                            <h1 class="about-title">Amazing Quotes</h1>
-                            <p class="about-text">“Happiness, Potential and Value of Positive thinking are our middle names”
-                            </p>
-                        </div>
+    <!-- page-header -->
+    <div class="pageheader-about" style="background:url({% static '/images/about.jpeg' %}) no-repeat;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="about-caption">
+                        <h1 class="about-title">Amazing Quotes</h1>
+                        <p class="about-text text-white">“Happiness, Potential and Value of Positive thinking are our middle names”
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /.page-header-->
-        <!-- about-section -->
-        <div class="space-medium">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb30">
-                        <!-- about-description -->
-                        <div class="about-description ">
-                            <p>{{ comp.description | linebreaks }}</p>
-                        </div>
-                        <!-- /.about-description -->
+    </div>
+    <!-- /.page-header-->
+    <!-- about-section -->
+    <div class="space-medium">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb30">
+                    <!-- about-description -->
+                    <div class="about-description ">
+                        <p>{{ comp.description | linebreaks }}</p>
                     </div>
+                    <!-- /.about-description -->
                 </div>
             </div>
         </div>
-        <!-- feature-section -->
-        <div class="space-medium bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <!-- section-title -->
-                        <div class="section-title">
-                            <h2>Our Philosophy</h2>
-                        </div>
-                        <!-- /.section-title -->
+    </div>
+    <!-- feature-section -->
+    <div class="space-medium bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!-- section-title -->
+                    <div class="section-title">
+                        <h2>Our Values</h2>
                     </div>
+                    <!-- /.section-title -->
                 </div>
-                <div class="row">
+            </div>
+            <div class="row">
+                {% for value in values %}
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         <!-- feature-boxed -->
-                        <div class="feature-boxed">
+                        <div class="feature-boxed" style="height: auto; min-height: 500px">
                             <div class="feature-content">
                                 <div class="feature-icon">
-                                    <h3 class="title-bold">Education</h3>
+                                    <h3 class="title-bold">{{ value.value }}</h3>
                                     <i class="icon-open-book text-primary"></i>
                                 </div>
-                                <p><strong>Aliquam exvel consequas sodin</strong> semtortor feugiat nonenilamcorper furnased malesua ermen.</p>
+                                <p>{{ value.description }}</p>
                             </div>
                         </div>
                         <!-- /.feature-boxed -->
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <!-- feature-boxed -->
-                        <div class="feature-boxed">
-                            <div class="feature-content">
-                                <div class="feature-icon">
-                                    <h3 class="title-bold">Engagement</h3>
-                                    <i class="icon-speech-bubble text-default"></i>
-                                </div>
-                                <p>Scuam exvel consequat felisse sollitudin <strong>egeonec enim tortor fserat nonim </strong>quisullamcorp tristes.</p>
-                            </div>
-                        </div>
-                        <!-- /.feature-boxed -->
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <!-- feature-boxed -->
-                        <div class="feature-boxed">
-                            <div class="feature-content">
-                                <div class="feature-icon">
-                                    <h3 class="title-bold">Empowerment</h3>
-                                    <i class="icon-fist text-yellow"></i>
-                                </div>
-                                <p><strong>Gravidat cursus avel conse felis sollicudin</strong> egeonec enim tortor feuim quisullorper facilisis niull.</p>
-                            </div>
-                        </div>
-                        <!-- /.feature-boxed -->
-                    </div>
-                </div>
+                {% empty %}
+                    <h3>Still working on this part.</h3>
+                {% endfor %}
             </div>
         </div>
-        <!-- /.feature-section -->
-        <div class="space-medium">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <!-- section -title -->
-                        <div class="section-title">
-                            <h2>Amazing Team Members</h2>
-                        </div>
-                        <!-- /.section -title -->
+    </div>
+    </div>
+    <!-- /.feature-section -->
+    <div class="space-medium">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!-- section -title -->
+                    <div class="section-title">
+                        <h2>Amazing Team Members</h2>
                     </div>
+                    <!-- /.section -title -->
                 </div>
-                <div class="row">
-                    {% for member in team %}
-                        <!-- team-block -->
-                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                            <div class="team-block">
-                                <div class="team-img"><a href="#" class="imghover"  data-toggle="modal" data-target="#{{ member.id }}" data-id="{{ member.id }}"><img src="{{ member.image.url }}" alt=""></a></div>
-                                <div class="team-content">
-                                    <h3 class="team-title"><a href="#" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="Click for more info" data-target="#member" class="text-white">{{ member.name }}</a></h3>
-                                    <h5 class="text-white">{% if member.title == 'CEO' %}Chief Executive Officer{% else %}{{ member.title }}{% endif %}</h5>
-                                </div>
+            </div>
+            <div class="row">
+                {% for member in team %}
+                    <!-- team-block -->
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                        <div class="team-block">
+                            <div class="team-img"><a href="#" class="imghover"  data-toggle="modal" data-target="#{{ member.id }}" data-id="{{ member.id }}"><img src="{{ member.image.url }}" alt=""></a></div>
+                            <div class="team-content">
+                                <h3 class="team-title"><a href="#" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="Click for more info" data-target="#member" class="text-white">{{ member.name }}</a></h3>
+                                <h5 class="text-white">{% if member.title == 'CEO' %}Chief Executive Officer{% else %}{{ member.title }}{% endif %}</h5>
                             </div>
                         </div>
-                        <!-- /.team-block -->
-                        <!-- Modal -->
-                        <div class="modal fade" id="{{ member.id }}" tabindex="-1" role="dialog" aria-labelledby="memberLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h2 class="modal-title" id="memberLabel">{{ member.name }}</h2>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="container">
-                                            <div class="col-lg-2"><img class="img-responsive" style="width: 200px; height: auto;"  src="{{ member.image.url }}"></div>
-                                            <ul>
+                    </div>
+                    <!-- /.team-block -->
+                    <!-- Modal -->
+                    <div class="modal fade" id="{{ member.id }}" tabindex="-1" role="dialog" aria-labelledby="memberLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title" id="memberLabel">{{ member.name }}</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <div class="col-lg-2"><img class="img-responsive" style="width: 200px; height: auto;"  src="{{ member.image.url }}"></div>
+                                        <ul>
                                             <li>Title: {% if member.title == 'CEO' %}Chief Executive Officer{% else %}{{ member.title }}{% endif %}</li>
                                             <li>Email: {{ member.email }}</li>
                                             <li>Phone: {{ member.phone_no }}</li>
                                         </ul>
-                                        </div>
-                                        <span><hr/></span>
-                                        <h5><b>About {{ member.name }}</b></h5>
-                                        <p>{{ member.about }}</p>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                    </div>
+                                    <span><hr/></span>
+                                    <h5><b>About {{ member.name }}</b></h5>
+                                    <p>{{ member.about }}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
-                        {% empty %}
-                        <h1>Oops... seems we are adding people. Check back soon!</h1>
-
-
-                    {% endfor %}
-                </div>
-                <hr class="mb80 mt80">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <!-- section -title -->
-                        <div class="section-title">
-                            <h2>Our Products</h2>
-                        </div>
-                        <!-- /.section -title -->
                     </div>
-                </div>
-                <div class="row">
-                    {% for product in products %}
-                        {% if product.feature == 'YES' %}
-                    <!-- product-block -->
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="product-block">
-                            <div class="product-img text-center"><img style="height: auto; width: 200px" src="{% if product.type_of_product == 'CUP' %}{% static '/images/cup.jpg' %}{% elif product.type_of_product == 'BAND' %}{% static '/images/wrist.png' %} {% elif product.type_of_product == 'TSHIRT' %}{% static '/images/tshirt.png' %}{% else %}{% static '/images/book.png' %}
+                {% empty %}
+                    <h1>Oops... seems we are adding people. Check back soon!</h1>
 
+
+                {% endfor %}
+            </div>
+            <hr class="mb80 mt80">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!-- section -title -->
+                    <div class="section-title">
+                        <h2>Our Products</h2>
+                    </div>
+                    <!-- /.section -title -->
+                </div>
+            </div>
+            <div class="row">
+                {% for product in products %}
+                    {% if product.feature == 'YES' %}
+                        <!-- product-block -->
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="product-block">
+                                <div class="product-img text-center"><img style="height: auto; width: 200px" src="{% if product.type_of_product == 'CUP' %}{% static '/images/cup.jpg' %}{% elif product.type_of_product == 'BAND' %}{% static '/images/wrist.png' %} {% elif product.type_of_product == 'TSHIRT' %}{% static '/images/tshirt.png' %}{% else %}{% static '/images/book.png' %}
                             {% endif %}" alt=""></div>
-                            <div class="product-content">
-                                <h3 class="product-title"><a href="#" class="title">{{ product.name }}</a></h3>
-                                <a href="#" class="product-text">Shop Now</a> <span class="product-price pull-right">{{ product.price }}</span>
+                                <div class="product-content">
+                                    <h3 class="product-title"><a href="#" class="title">{{ product.name }}</a></h3>
+                                    <div class="row"> <h4 class="text-left">Quantity: <span class="text-right"> {{ product.quantity }}</span></h4></div>
+                                    <a href="#" class="product-text" data-toggle="modal" data-target="#{{ product.id }}order" data-id="{{ product.id }}">Place order</a> <span class="product-price pull-right">Tsh. {{ product.price | intcomma }}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                        {% endif %}
+                        <div class="modal fade" id="{{ product.id }}order" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header text-center">
+                                        <h4 class="modal-title w-100 font-weight-bold">Order your {{ product.type_of_product | lower}}</h4>
+                                    </div>
+                                        <div class="modal-body col-lg-4 col-sm-12">
+                                            <img src="{% if product.type_of_product == 'CUP' %}{% static '/images/cup.jpg' %}{% elif product.type_of_product == 'BAND' %}{% static '/images/wrist.png' %} {% elif product.type_of_product == 'TSHIRT' %}{% static '/images/tshirt.png' %}{% else %}{% static '/images/book.png' %}
+
+                            {% endif %}" style="width: 200px; height: auto;">
+                                        </div>
+                                    <form method="post">{% csrf_token %}
+                                        <div class="col-lg-8 col-sm-12">
+                                            {% render_field order_form.product type='hidden' value=product.id %}
+                                            <div class="form-group">
+                                                {% render_field order_form.name class="form-control" placeholder="Your Name" %}
+                                            </div>
+
+                                            <div class="form-group">
+                                                {% render_field order_form.email class="form-control" placeholder="Your Email" %}
+                                            </div>
+
+                                            <div class="form-group">
+                                                {% render_field order_form.phone_no class="form-control" placeholder="Your Phone Number"%}
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer d-flex justify-content-center">
+                                            <button class="btn btn-secondary" type="submit">Order Now</button>
+                                            <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endif %}
                     <!-- /.product-block -->
-                        {% empty %}
-                        <h4>There are currently no featured Products.</h4>
-                        {% endfor %}
+                {% empty %}
+                    <h4>There are currently no featured Products.</h4>
+                {% endfor %}
+
+            {% if messages %}
+                <div class="modal fade" id="alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <ul class="messages">
+                                {% for message in messages %}
+                                    <li{% if message.tags %} class="{{ message.tags }} alert alert-success alert-dismissible fade show"{% endif %}
+                                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %} class="{{ message.tags }} alert alert-error alert-danger alert-dismissible fade show" {% endif %}>
+                                        {{ message }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
                 </div>
             </div>
         </div>
+    </div>
+
+<!-- Modal -->
 
 
 
-    {% endfor %}
+
+
+
+
+
+
+
+
     <!--/.about-section -->{% endblock body %}

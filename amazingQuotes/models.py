@@ -62,8 +62,8 @@ class AmazingQuotesAbout(models.Model):
     twitter = models.URLField(max_length=128, default='https://twitter.com/amazingquotes',
                                 verbose_name='Twitter link')
     linkedin = models.CharField(max_length=128, default='https://linkedin.com/amazingquotes',
-
                                 verbose_name='Linkedin link')
+
     def __str__(self):
         return self.name
 
@@ -114,3 +114,15 @@ class ContactRequests(models.Model):
         verbose_name_plural = "Contact Requests"
         verbose_name = "Contact Request"
 
+
+class Value(models.Model):
+    about = models.ForeignKey(AmazingQuotesAbout, related_name='values', on_delete=models.CASCADE)
+    value = models.CharField(max_length=128, default='Value')
+    description = models.TextField(verbose_name="Value Description", max_length=256)
+
+
+class Order(models.Model):
+    product = models.ForeignKey(Product, related_name='order', on_delete=models.CASCADE, null=True)
+    name = models.CharField(max_length=128, verbose_name="Name of The person Ordering")
+    email = models.EmailField()
+    phone_no = models.CharField(max_length=15, verbose_name="Phone number")
