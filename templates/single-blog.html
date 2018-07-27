@@ -3,7 +3,7 @@
 {% load threadedcomments_tags %}
 {% load comments i18n %}
 {% load widget_tweaks %}
-{% block title %}Blog Post{% endblock title %}
+{% block title %}{{ post.title }}{% endblock title %}
 {% block body %}
     <!-- page-header -->
     <div class="post-pageheader" style="background: url({% static 'images/blog1.jpg' %}) no-repeat;">

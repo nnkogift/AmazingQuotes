@@ -126,3 +126,19 @@ class Order(models.Model):
     name = models.CharField(max_length=128, verbose_name="Name of The person Ordering")
     email = models.EmailField()
     phone_no = models.CharField(max_length=15, verbose_name="Phone number")
+
+
+class Quote(models.Model):
+    content = models.TextField(verbose_name='The quote')
+    writer = models.CharField(verbose_name='Quote by', max_length=64)
+    quote_image = models.ImageField(verbose_name='Quote Image')
+    date_of_publish = models.DateField(verbose_name='Date to be published', unique=True, auto_created=False,
+                                       auto_now=False)
+
+    def __str__(self):
+        return self.writer
+
+    class Meta:
+        verbose_name='Quote of the Day'
+        verbose_name_plural = 'Daily quotes'
+

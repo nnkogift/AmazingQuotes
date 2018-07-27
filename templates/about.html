@@ -155,11 +155,11 @@
                                     <div class="modal-header text-center">
                                         <h4 class="modal-title w-100 font-weight-bold">Order your {{ product.type_of_product | lower}}</h4>
                                     </div>
-                                        <div class="modal-body col-lg-4 col-sm-12">
-                                            <img src="{% if product.type_of_product == 'CUP' %}{% static '/images/cup.jpg' %}{% elif product.type_of_product == 'BAND' %}{% static '/images/wrist.png' %} {% elif product.type_of_product == 'TSHIRT' %}{% static '/images/tshirt.png' %}{% else %}{% static '/images/book.png' %}
+                                    <div class="modal-body col-lg-4 col-sm-12">
+                                        <img src="{% if product.type_of_product == 'CUP' %}{% static '/images/cup.jpg' %}{% elif product.type_of_product == 'BAND' %}{% static '/images/wrist.png' %} {% elif product.type_of_product == 'TSHIRT' %}{% static '/images/tshirt.png' %}{% else %}{% static '/images/book.png' %}
 
                             {% endif %}" style="width: 200px; height: auto;">
-                                        </div>
+                                    </div>
                                     <form method="post">{% csrf_token %}
                                         <div class="col-lg-8 col-sm-12">
                                             {% render_field order_form.product type='hidden' value=product.id %}
@@ -189,24 +189,24 @@
                 {% empty %}
                     <h4>There are currently no featured Products.</h4>
                 {% endfor %}
-
+            </div>
+            <div class="row text-center"><a href="{% url 'home:products' %}" class="btn-link">View More Products</a> </div>
             {% if messages %}
                 <div class="modal fade" id="alert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <ul class="messages">
-                                {% for message in messages %}
-                                    <li{% if message.tags %} class="{{ message.tags }} alert alert-success alert-dismissible fade show"{% endif %}
-                                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %} class="{{ message.tags }} alert alert-error alert-danger alert-dismissible fade show" {% endif %}>
-                                        {{ message }}
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-                </div>
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }} alert alert-success alert-dismissible fade show"{% endif %}
+                                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %} class="{{ message.tags }} alert alert-error alert-danger alert-dismissible fade show" {% endif %}>
+                            {{ message }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
             </div>
         </div>
     </div>
 
-<!-- Modal -->
+    <!-- Modal -->
 
 
 

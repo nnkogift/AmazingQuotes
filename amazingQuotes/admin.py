@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Event, Product, AmazingQuotesAbout, TeamMember, Value, Order
+from .models import Event, Product, AmazingQuotesAbout, TeamMember, Value, Order,Quote
 
 
 # Register your models here.
@@ -23,7 +23,12 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [OrderInLine]
 
 
+class QuoteAdmin(admin.ModelAdmin):
+    list_display = ["__str__", "date_of_publish"]
+
+
 admin.site.register(Event)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(AmazingQuotesAbout, AmazingQuotesAboutAdmin)
 admin.site.register(TeamMember)
+admin.site.register(Quote,QuoteAdmin)
