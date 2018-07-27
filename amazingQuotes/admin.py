@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Event, Product, AmazingQuotesAbout, TeamMember, Value, Order,Quote
+from .models import Event, Product, AmazingQuotesAbout, TeamMember, Value, Order,Quote, TrainingTopic
 
 
 # Register your models here.
@@ -32,3 +32,4 @@ admin.site.register(Product, ProductAdmin)
 admin.site.register(AmazingQuotesAbout, AmazingQuotesAboutAdmin)
 admin.site.register(TeamMember)
 admin.site.register(Quote,QuoteAdmin)
+admin.site.register(TrainingTopic)

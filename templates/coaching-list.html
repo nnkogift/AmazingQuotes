@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="page-caption">
-                        <h1 class="page-title">Coaching List</h1>
+                        <h1 class="page-title">Coaching and Training Services</h1>
                     </div>
                 </div>
             </div>
@@ -27,83 +27,81 @@
         </div>
     </div>
     <!-- /.page-header-->
-<!-- coachservice-section -->
+    <div class="container" style="margin-top: 50px;">
+        <div class="row text-center" >
+            <h2>Events and Training speakers</h2>
+            <p><i>We offer motivation speakers to attend training events.</i></p>
+        </div>
+
+    <div class="row">
+                {% for member in team %}
+                    <!-- team-block -->
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                        <div class="team-block">
+                            <div class="team-img"><a href="#" class="imghover"  data-toggle="modal" data-target="#{{ member.id }}" data-id="{{ member.id }}"><img src="{{ member.image.url }}" alt=""></a></div>
+                            <div class="team-content">
+                                <h3 class="team-title"><a href="#" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="Click for more info" data-target="#member" class="text-white">{{ member.name }}</a></h3>
+                                <h5 class="text-white">{% if member.title == 'CEO' %}Chief Executive Officer{% else %}{{ member.title }}{% endif %}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.team-block -->
+                    <!-- Modal -->
+                    <div class="modal fade" id="{{ member.id }}" tabindex="-1" role="dialog" aria-labelledby="memberLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title" id="memberLabel">{{ member.name }}</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <div class="col-lg-2"><img class="img-responsive" style="width: 200px; height: auto;"  src="{{ member.image.url }}"></div>
+                                        <ul>
+                                            <li>Title: {% if member.title == 'CEO' %}Chief Executive Officer{% else %}{{ member.title }}{% endif %}</li>
+                                            <li>Email: {{ member.email }}</li>
+                                            <li>Phone: {{ member.phone_no }}</li>
+                                        </ul>
+                                    </div>
+                                    <span><hr/></span>
+                                    <h5><b>About {{ member.name }}</b></h5>
+                                    <p>{{ member.about }}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="row text-center">
+                    <h2>Still setting up stuff. Check back soon!</h2>
+                    </div>
+                {% endfor %}
+            </div>
+    </div>
+
+    <!-- coachservice-section -->
     <div class="content">
         <div class="container">
             <div class="row">
+                <div class="text-center text">
+                    <h2>Training topics</h2>
+                    <p><i>Some of our training topics</i></p>
+                </div>
+                {% for training in training_list %}
                 <!-- coach-service -->
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
                     <div class="coach-service-block">
-                        <div class="coach-service-img"><a href="#" class="imghover"><img src="./images/coach_service_img_1.jpg" alt="" class="img-responsive"></a></div>
+{#                        <div class="coach-service-img"><a href="#" class="imghover"><img src="{% static 'images/coach_service_img_1.jpg' %}" alt="" class="img-responsive"></a></div>#}
                         <div class="coach-service-content">
-                            <span class="coach-service-meta text-primary">Life Coaching</span>
-                            <h4 class="coach-service-title"><a href="#">Every Single Incredible 
-                            Achiever Have A Coach</a></h4>
+                            <span class="coach-service-meta text-primary">{{ training.category }}</span>
+                            <h4 class="coach-service-title"><a href="{% url 'home:coaching' id=training.id %}">{{ training.name }}</a></h4>
+                            <h5><i>By {{ training.speaker }}</i></h5>
                         </div>
                     </div>
                 </div>
                 <!-- /.coach-service -->
-                <!-- coach-service -->
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
-                    <div class="coach-service-block">
-                        <div class="coach-service-img"><a href="#" class="imghover"><img src="./images/coach_service_img_2.jpg" alt="" class="img-responsive"></a></div>
-                        <div class="coach-service-content">
-                            <span class="coach-service-meta text-default">Relationship 
-</span>
-                            <h4 class="coach-service-title"><a href="#">Make A Healthy Relationship 
-You Deserve</a></h4>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.coach-service -->
-                <!-- coach-service -->
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
-                    <div class="coach-service-block">
-                        <div class="coach-service-img"><a href="#" class="imghover"><img src="./images/coach_service_img_3.jpg" alt="" class="img-responsive"></a></div>
-                        <div class="coach-service-content">
-                            <span class="coach-service-meta text-yellow">Leadership</span>
-                            <h4 class="coach-service-title"><a href="#">Being A Leader With Clear 
-Vision & Guide Their Team</a></h4>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.coach-service -->
-
-                <!-- coach-service -->
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
-                    <div class="coach-service-block">
-                        <div class="coach-service-img"><a href="#" class="imghover"><img src="./images/coach_service_img_4.jpg" alt="" class="img-responsive"></a></div>
-                        <div class="coach-service-content">
-                            <span class="coach-service-meta text-primary">Entrepreneur</span>
-                            <h4 class="coach-service-title"><a href="#">Learn What An  Entrepreneur Is & The Key of Skills</a></h4>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.coach-service -->
-                <!-- coach-service -->
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
-                    <div class="coach-service-block">
-                        <div class="coach-service-img"><a href="#" class="imghover"><img src="./images/coach_service_img_5.jpg" alt="" class="img-responsive"></a></div>
-                        <div class="coach-service-content">
-                            <span class="coach-service-meta text-default">Time management 
-</span>
-                            <h4 class="coach-service-title"><a href="#">Learn How To Effectively 
-Manage Your Time</a></h4>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.coach-service -->
-                <!-- coach-service -->
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
-                    <div class="coach-service-block">
-                        <div class="coach-service-img"><a href="#" class="imghover"><img src="./images/coach_service_img_6.jpg" alt="" class="img-responsive"></a></div>
-                        <div class="coach-service-content">
-                            <span class="coach-service-meta text-yellow">Financial playbook</span>
-                            <h4 class="coach-service-title"><a href="#">Money Related Freedom Isn't Only For The Rich</a></h4>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.coach-service -->
+                {% endfor %}
             </div>
         </div>
     </div>

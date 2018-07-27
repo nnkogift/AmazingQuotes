@@ -34,75 +34,38 @@
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                     <div class="coach-description">
                         <div class="mb30"> <img src="./images/coach_service_big_1.jpg" alt="" class="img-responsive"></div>
-                        <span class="coach-service-meta text-primary">Life Coaching</span>
-                        <h2>Every Single Incredible Achiever Have A Coach</h2>
-                        <p>Class aptent taciti sociosquad litora torquentper conubia nostraper inceptos himenurabitur ones nislurna consectetur ininterdum idlobortis veleroed mattis elementum leoet gravidaecenas arcus massa <strong>imperdieteget efficitur acrutrum quis magnsce vestibefficiture serons.</strong> </p>
-                        <p>Aptent taciti sociosquad litora torquentper conubia nostraper inceptos himenurabitur ones jisede nislurna consectetur ininterdum idlobortis arcus massa imperdieteget efficiture.</p>
-                    </div>
-                    <div class="coach-section">
-                        <h3>What is life coaching?  </h3>
-                        <p>Aptent taciti sociosquad litora torquentper conubia nostraper inceptos himenurabitur ones jisede nislurna consectetur ininterdum idlobortis arcus massa imperdieteget effitur acrutrum quagnsce vestibefficiture serons veleroed mattis elementum leoet gravidaecenas.</p>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb30">
-                                <h3>Life coaching: what can you expect?</h3>
-                                <p>Dociosquad litora torquentper conubia nostraper inceptos himenurabitur onese.</p>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mb20">
-                                <div class="coach-inner-block">
-                                    <div class="coach-inner-img"><img src="./images/coach_inner_img_1.jpg" alt="" class="img-responsive"></div>
-                                    <div class="coach-inner-content">
-                                        <h3>What is a results life coach?</h3>
-                                        <p>Sciti sociosquad litora torquentper cubnostrar inceptos himenurabitur jisede nisa consectetur ininterdum idloors arcus massa imege.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mb20">
-                                <div class="coach-inner-block">
-                                    <div class="coach-inner-img"><img src="./images/coach_inner_img_2.jpg" alt="" class="img-responsive"></div>
-                                    <div class="coach-inner-content">
-                                        <h3>Do I need a life coach?</h3>
-                                        <p>Maecenas pulvinarvel liberoed fermentumInin blandit diamat auctor velihasellus mattis exnc nulla posuere ornare spendisse pullam.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb30">
-                                <div class="cta-section">
-                                    <h2 class="cta-section-text">Schedule Your Introductory Coaching Session</h2>
-                                    <a href="#" class="btn btn-default btn-lg">Schedule Your Coaching Session</a>
-                                </div>
-                            </div>
-                        </div>
+                        <span class="coach-service-meta text-primary">{{ training.category }}</span>
+                        <h2>{{ training.name }}</h2>
+
+                        <p>{{ training.description | linebreaks }}</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <!-- sidenav-section -->
-                    <div class="sidenav">
-                        <ul>
-                            <li class="active"><a href="#">Life Coaching</a></li>
-                            <li><a href="#">Relationship</a></li>
-                            <li><a href="#">Leadership</a></li>
-                            <li><a href="#">Entrepreneurship</a></li>
-                            <li><a href="#">Time Managment</a></li>
-                            <li><a href="#">Financial Playbook</a></li>
-                        </ul>
-                    </div>
+{#                    {% for category in training.post_category %}#}
+{#                    <div class="sidenav">#}
+{#                        <ul>#}
+{#                            <li><a href="#"></a></li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                    {% endfor %}#}
                     <!-- /.sidenav-section -->
                     <div class="widget-cta mb30">
                         <div class="widget-cta-icon">
                             <i class="icon-books-1 text-default"></i>
                         </div>
                         <div class="widget-ctae-content">
-                            <h3>See My Books, Can Change Your Life</h3>
-                            <a href="#" class="btn btn-primary">View All books</a>
+                            <h3>Get Amazing products now</h3>
+                            <a href="{% url 'home:products' %}" class="btn btn-primary">View Our products</a>
                         </div>
                     </div>
                     <div class="widget-cta">
                         <div class="widget-cta-icon">
-                            <i class="icon-left-quote text-yellow"></i>
+                            <img class="icon" src="{% static 'images/amazing_logo.png' %}">
                         </div>
                         <div class="widget-cta-content">
-                            <h3>View All Success Stories of Life Coach</h3>
-                            <a href="#" class="btn btn-primary">View All Success Stories</a>
+                            <h3>Learn more about Amazing quotes</h3>
+                            <a href="{%  url 'home:about' %}" class="btn btn-primary">About amazing quotes</a>
                         </div>
                     </div>
                 </div>

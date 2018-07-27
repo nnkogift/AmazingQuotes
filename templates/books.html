@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
+{% load widget_tweaks %}
 {% block title %} Our Products {% endblock title %}
 {% block body %}
     <!-- page-header -->
@@ -8,7 +10,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="page-caption">
-                        <h1 class="page-title">My Books</h1>
+                        <h1 class="page-title">Amazing Products</h1>
                     </div>
                 </div>
             </div>
@@ -31,74 +33,57 @@
     <div class="space-medium">
         <div class="container">
             
-            <div class="row">
-                <!-- product-block -->
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="product-block">
-                        <div class="product-img text-center"><img src="./images/book.png" alt=""></div>
-                        <div class="product-content">
-                            <h3 class="product-title"><a href="#" class="title">Design The Life You Love</a></h3>
-                           <a href="#" class="product-text">Shop Now</a> <span class="product-price pull-right">$15</span>
+           <div class="row">
+                {% for product in products %}
+                        <!-- product-block -->
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="product-block">
+                                <div class="product-img text-center"><img style="height: auto; width: 200px" src="{% if product.type_of_product == 'CUP' %}{% static '/images/cup.jpg' %}{% elif product.type_of_product == 'BAND' %}{% static '/images/wrist.png' %} {% elif product.type_of_product == 'TSHIRT' %}{% static '/images/tshirt.png' %}{% else %}{% static '/images/book.png' %}
+                            {% endif %}" alt=""></div>
+                                <div class="product-content">
+                                    <h3 class="product-title"><a href="#" class="title">{{ product.name }}</a></h3>
+                                    <div class="row"> <h4 class="text-left">Quantity: <span class="text-right"> {{ product.quantity }}</span></h4></div>
+                                    <a href="#" class="product-text" data-toggle="modal" data-target="#{{ product.id }}order" data-id="{{ product.id }}">Place order</a> <span class="product-price pull-right">Tsh. {{ product.price | intcomma }}</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <!-- /.product-block -->
-                <!-- product-block -->
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="product-block">
-                        <div class="product-img text-center"><img src="./images/book.png" alt=""></div>
-                        <div class="product-content">
-                            <h3 class="product-title"><a href="#" class="title">The Power of NOW</a></h3>
-                            <a href="#" class="product-text">Shop Now</a> <span class="product-price pull-right">$12</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.product-block -->
-                <!-- product-block -->
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="product-block">
-                        <div class="product-img text-center"><img src="./images/book.png" alt=""></div>
-                        <div class="product-content">
-                            <h3 class="product-title"><a href="#" class="title">Creative Living Beyond Fear</a></h3>
-                            <a href="#" class="product-text">Shop Now</a> <span class="product-price pull-right">$10</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.product-block -->
+                        <div class="modal fade" id="{{ product.id }}order" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header text-center">
+                                        <h4 class="modal-title w-100 font-weight-bold">Order your {{ product.type_of_product | lower}}</h4>
+                                    </div>
+                                    <div class="modal-body col-lg-4 col-sm-12">
+                                        <img src="{% if product.type_of_product == 'CUP' %}{% static '/images/cup.jpg' %}{% elif product.type_of_product == 'BAND' %}{% static '/images/wrist.png' %} {% elif product.type_of_product == 'TSHIRT' %}{% static '/images/tshirt.png' %}{% else %}{% static '/images/book.png' %}
 
-                <!-- product-block -->
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="product-block">
-                        <div class="product-img text-center"><img src="./images/book.png" alt=""></div>
-                        <div class="product-content">
-                            <h3 class="product-title"><a href="#" class="title">The Art of Thinking Clearly</a></h3>
-                            <a href="#" class="product-text">Shop Now</a> <span class="product-price pull-right">$19</span>
+                            {% endif %}" style="width: 200px; height: auto;">
+                                    </div>
+                                    <form method="post">{% csrf_token %}
+                                        <div class="col-lg-8 col-sm-12">
+                                            <div class="form-group">
+                                                {% render_field order_form.name class="form-control" placeholder="Your Name" %}
+                                            </div>
+
+                                            <div class="form-group">
+                                                {% render_field order_form.email class="form-control" placeholder="Your Email" %}
+                                            </div>
+
+                                            <div class="form-group">
+                                                {% render_field order_form.phone_no class="form-control" placeholder="Your Phone Number"%}
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer d-flex justify-content-center">
+                                            <button class="btn btn-secondary" type="submit">Order Now</button>
+                                            <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <!-- /.product-block -->
-                <!-- product-block -->
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="product-block">
-                        <div class="product-img text-center"><img src="./images/book.png" alt=""></div>
-                        <div class="product-content">
-                            <h3 class="product-title"><a href="#" class="title">How To Love Your Self</a></h3>
-                            <a href="#" class="product-text">Shop Now</a> <span class="product-price pull-right">$12</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.product-block -->
-                <!-- product-block -->
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <div class="product-block">
-                        <div class="product-img text-center"><img src="./images/book.png" alt=""></div>
-                        <div class="product-content">
-                            <h3 class="product-title"><a href="#" class="title">The Power of NOW</a></h3>
-                            <a href="#" class="product-text">Shop Now</a> <span class="product-price pull-right">$13</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.product-block -->
+                    <!-- /.product-block -->
+                {% empty %}
+                    <h4>There are currently no Products.</h4>
+                {% endfor %}
             </div>
         </div>
     </div>

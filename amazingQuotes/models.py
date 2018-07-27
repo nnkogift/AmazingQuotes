@@ -4,14 +4,20 @@ from django.db import models
 # Create your models here.
 
 
-#team members
+# team members
 class TeamMember(models.Model):
+    speaking = {
+        ('YES', 'Yes'),
+        ('NO', 'No')
+    }
+
     name = models.CharField(max_length=64, verbose_name='Name of Team member')
     title = models.CharField(max_length=64, verbose_name="Position")
     about = models.TextField(verbose_name="About You")
     image = models.ImageField(verbose_name="Profile image")
     email = models.EmailField(verbose_name='Email', default='amazingquotes@gmail.com')
     phone_no = models.CharField(max_length=15, default='+255712626160')
+    speaker = models.CharField(max_length=5, choices=speaking, default='NO')
 
     def __str__(self):
         return self.name
@@ -142,3 +148,18 @@ class Quote(models.Model):
         verbose_name='Quote of the Day'
         verbose_name_plural = 'Daily quotes'
 
+
+class TrainingTopic(models.Model):
+    post_category = {
+        ('RELATIONSHIP', 'Relationship'),
+        ('LIFE COACHING', 'Life Coaching'),
+        ('LEADERSHIP', 'Leadership'),
+        ('ENTREPRENEURSHIP', 'Entrepreneurship')
+    }
+    name = models.CharField(max_length=64)
+    category = models.CharField(max_length=20, choices=post_category, default='LIFE COACHING')
+    description = models.TextField()
+    speaker = models.ForeignKey(TeamMember,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name

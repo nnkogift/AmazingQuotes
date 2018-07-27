@@ -19,7 +19,10 @@ def home_view(request):
     ceo = models.TeamMember.objects.filter(title='CEO')
     order_form = OrderForm(request.POST or None)
     prod_id = request.GET.get('product_id')
-    daily_quote = get_object_or_404(models.Quote, date_of_publish=now())
+    if get_object_or_404(models.Quote, date_of_publish=now()):
+        daily_quote = get_object_or_404(models.Quote, date_of_publish=now())
+    else:
+        daily_quote=models.Quote.objects.first()
     if order_form.is_valid():
         instance = order_form.save(commit=False)
         order_form.instance.product_id = prod_id
@@ -75,8 +78,21 @@ def about_us(request):
 
 def products(request):
     company = models.AmazingQuotesAbout.objects.all()
+    prop = models.Product.objects.all()
+
+    order_form = OrderForm(request.POST or None)
+    prod_id = request.GET.get('product_id')
+    if order_form.is_valid():
+        instance = order_form.save(commit=False)
+        order_form.instance.product_id = prod_id
+        instance.save()
+        messages.success(request, "Order placed successfully, We will contact you for more information ")
+        return HttpResponseRedirect(redirect_to='about#alert')
+
     context = {
-        'company': company
+        'company': company,
+        'products': prop,
+        'order_form': order_form
     }
     return render(request, 'books.html', context=context)
 
@@ -130,18 +146,23 @@ def contact(request):
 
 def coaching_list(request):
     company = models.AmazingQuotesAbout.objects.all()
-
+    team = models.TeamMember.objects.filter(speaker='YES')
+    training_list = models.TrainingTopic.objects.all()
     context = {
-        'company': company
+        'company': company,
+        'team': team,
+        'training_list': training_list
     }
     return render(request, 'coaching-list.html', context=context)
 
 
-def coaching(request):
+def coaching(request, id):
     company = models.AmazingQuotesAbout.objects.all()
+    training = get_object_or_404(models.TrainingTopic, id=id)
 
     context = {
-        'company': company
+        'company': company,
+        'training': training
     }
     return render(request, 'coaching-single.html', context=context)
 

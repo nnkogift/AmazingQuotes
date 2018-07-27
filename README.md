@@ -1,2 +1,3 @@
-# AmazingQuotes
+#AmazingQuotes
 Website for amazing quotes
+
