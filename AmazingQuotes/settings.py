@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
-    'amazingQuotes',
+    'amazingQuote',
     'blog',
     'threadedcomments',
     'django_comments',

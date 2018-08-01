@@ -22,7 +22,7 @@ from AmazingQuotes import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('amazingQuotes.urls', namespace='home'), name='home'),
+    path('', include('amazingQuote.urls', namespace='home'), name='home'),
     path('', include('django_comments.urls')),
 
 ]
@@ -31,4 +31,4 @@ if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-handler404 = 'amazingQuotes.views.custom_404'
+handler404 = 'amazingQuote.views.custom_404'

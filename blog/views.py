@@ -2,7 +2,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_protect
-from amazingQuotes.models import AmazingQuotesAbout
+from amazingQuote.models import AmazingQuotesAbout
 from .models import Post
 
 # Create your views here.
