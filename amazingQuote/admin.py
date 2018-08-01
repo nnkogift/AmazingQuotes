@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Event, Product, AmazingQuotesAbout, TeamMember, Value, Order,Quote, TrainingTopic
+from .models import Event, Product, AmazingQuotesAbout, TeamMember, Value, Order, Quote, TrainingTopic
 
 
 # Register your models here.
