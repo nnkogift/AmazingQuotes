@@ -9,11 +9,11 @@ from . import models
 # Create your views here.
 
 #home
-from amazingQuotes.forms import ContactForm, OrderForm
+from amazingQuotes.forms import ContactForm, OrderForm, EventRegistrationForm
 
 
 def home_view(request):
-    company = models.AmazingQuotesAbout.objects.all()
+    company = models.AmazingQuotesAbout.objects.first()
     prop = models.Product.objects.filter(feature='YES')
     posts = Post.objects.filter(feature='YES')
     ceo = models.TeamMember.objects.filter(title='CEO')
@@ -42,7 +42,7 @@ def home_view(request):
 
 
 def custom_404(request):
-    company = models.AmazingQuotesAbout.objects.all()
+    company = models.AmazingQuotesAbout.objects.first()
     context = {
         'company': company
     }
@@ -77,7 +77,7 @@ def about_us(request):
 
 
 def products(request):
-    company = models.AmazingQuotesAbout.objects.all()
+    company = models.AmazingQuotesAbout.objects.first()
     prop = models.Product.objects.all()
 
     order_form = OrderForm(request.POST or None)
@@ -94,7 +94,7 @@ def products(request):
         'products': prop,
         'order_form': order_form
     }
-    return render(request, 'books.html', context=context)
+    return render(request, 'products.html', context=context)
 
 
 def product(request):
@@ -107,7 +107,7 @@ def product(request):
 
 
 def events(request):
-    company = models.AmazingQuotesAbout.objects.all()
+    company = models.AmazingQuotesAbout.objects.first()
     events = models.Event.objects.all()
     context = {
         'company': company,
@@ -115,21 +115,29 @@ def events(request):
     }
     return render(request, 'events.html', context=context)
 
-
+@csrf_protect
 def event(request, id):
-    company = models.AmazingQuotesAbout.objects.all()
+    company = models.AmazingQuotesAbout.objects.first()
     event = get_object_or_404(models.Event, id=id)
+    form = EventRegistrationForm(request.POST or None)
+
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+        messages.success(request, "You have successfully registered")
+        return HttpResponseRedirect(redirect_to='event/<id>')
 
     context = {
         'company': company,
-        'event': event
+        'event': event,
+        'form': form
 
     }
     return render(request, 'event-single.html', context=context)
 
 @csrf_protect
 def contact(request):
-    company = models.AmazingQuotesAbout.objects.all()
+    company = models.AmazingQuotesAbout.objects.first()
     form = ContactForm(request.POST or None)
     if form.is_valid():
         instance = form.save(commit=False)
@@ -145,7 +153,7 @@ def contact(request):
 
 
 def coaching_list(request):
-    company = models.AmazingQuotesAbout.objects.all()
+    company = models.AmazingQuotesAbout.objects.first()
     team = models.TeamMember.objects.filter(speaker='YES')
     training_list = models.TrainingTopic.objects.all()
     context = {
@@ -157,7 +165,7 @@ def coaching_list(request):
 
 
 def coaching(request, id):
-    company = models.AmazingQuotesAbout.objects.all()
+    company = models.AmazingQuotesAbout.objects.first()
     training = get_object_or_404(models.TrainingTopic, id=id)
 
     context = {

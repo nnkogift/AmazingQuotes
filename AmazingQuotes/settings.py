@@ -25,9 +25,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 
 # SECRET_KEY = '3l!d2_lez$#_y4kv597_p_&a^!xhbtu3uuyab(!)6l@tgzu6e+'
+#
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+SECRET_KEY = config('SECRET_KEY', default='3l!d2_lez$#_y4kv597_p_&a^!xhbtu3uuyab(!)6l@tgzu6e+')
+DEBUG = config('DEBUG', default=True, cast=bool)
 DATABASES = {
     'default': dj_database_url.config(
         default=config('DATABASE_URL')
@@ -41,7 +48,7 @@ ADMINS = [('Gift', 'nnkogift@gmail.com')]
 
 MANAGERS = [('Gift', 'nnkogift@gmail.com')]
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -52,13 +59,22 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
-    'amazingQuotes.apps.AmazingquotesConfig',
+    'amazingQuotes',
     'blog',
+    'threadedcomments',
+    'django_comments',
+    'django.contrib.sites',
+    'widget_tweaks',
+    'django.contrib.humanize'
 ]
+
+COMMENTS_APP = 'threadedcomments'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -93,12 +109,7 @@ WSGI_APPLICATION = 'AmazingQuotes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+
 
 
 # Password validation
@@ -138,29 +149,35 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'serverStatic')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'serverMedia')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-#email setting
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'serverMedia')
+
+
+SITE_ID=1
+
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
+# email setting
 EMAIL_HOST = config('EMAIL_HOST', default='smtp.google.com')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='gianttallY', cast=str)
 EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='nnkogift', cast=str)
 EMAIL_PORT = config('EMAIL_PORT', default='587', cast=str)
 SERVER_EMAIL = config('SERVER_EMAIL', default='nnkogift@gmail.com', cast=str)
 
- # = 'gmail.com'
- # = 'gianttallY'
- # = 'nnkogift'
- # = 587
- # = 'nnkogift@gmail.com'
+
+if not DEBUG:
+    CSRF_COOKIE_SECURE=False
+else:
+    CSRF_COOKIE_SECURE=True
+
+SESSION_COOKIE_SECURE=True
 
 # Configure Django App for Heroku.
 import django_heroku

@@ -2,15 +2,18 @@
 {% load static %}
 {% load widget_tweaks %}
 {% block title %}Home{% endblock title %}
+{% block topBar %}
+    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><a href="{{ company.facebook }}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="{{ company.twitter }}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="{{ company.linkedin }}" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="{{ company.instagram }}" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                        <li>|</li>
+                        <li>{{ company.phone_no }}</li>
+                    </ul>
+                </div>{% endblock topBar %}
 {% block body %}
-    <div class="space-small">
-        <div class="container">
-            <div class="row text-center">
-                    <h1 class="title-bold">Welcome to Amazing Quotes!</h1>
-            </div>
-        </div>
-    </div>
-
     <!-- slider -->
     <div class="slider">
         <div class="owl-carousel owl-one owl-theme">
@@ -26,9 +29,13 @@
         </div>
     </div>
     <!-- /.slider -->
-
-
-
+    <div class="space-small">
+        <div class="container">
+            <div class="row text-center">
+                    <h1 class="title-bold">Welcome to Amazing Quotes!</h1>
+            </div>
+        </div>
+    </div>
     <!-- coachservice-section -->
     <div class="space-medium">
     <div class="text-center"><h2>Our Services</h2></div>
@@ -223,7 +230,7 @@
                         <!-- post block -->
                         <div class="post-content">
                             <div class="meta"><a href="#" class="meta-categories text-primary">{{ post.category }}</a></div>
-                            <h4 class="post-title"><a href="{% url 'home:single_post' id=post.id %}" class="title">{{ post.title }}</a></h4>
+                            <h3 class="post-title"><a href="{% url 'home:single_post' id=post.id %}" class="title">{{ post.title }}</a></h3>
                             <div class="meta">
                                 <span class="meta-date"><i class="fa fa-calendar"></i>  {{ post.timestamp | date }} </span>
                             </div>
@@ -247,44 +254,33 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <!-- video-img -->
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopl nopr">
-                    <div class="video-img">
-                        <img src="{% static '/images/video_img_1.jpg' %}" alt="" class="img-responsive">
-                        <a id="play-video" class="video-play-button" href="#"> <span><i class="fa fa-play"></i></span>
-</a>
-                        <div id="video-overlay" class="video-overlay">
-                            <a class="video-overlay-close">&times;</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.video-img -->
-                <!-- video-img -->
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopl nopr">
-                    <div class="video-img">
-                        <img src="{% static '/images/video_img_2.jpg' %}" alt="" class="img-responsive">
-                        <a id="play-video2" class="video-play-button" href="#">  <span><i class="fa fa-play"></i></span>
-</a>
-                        <div id="video-overlay" class="video-overlay">
-                            <a class="video-overlay-close">&times;</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.video-img -->
-                <!-- video-img -->
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 nopr nopl">
-                    <div class="video-img">
-                        <img src="{% static '/images/video_img_3.jpg' %}" alt="" class="img-responsive">
-                        <a id="play-video3" class="video-play-button" href="#"><span><i class="fa fa-play"></i></span>
-</a>
-                        <div id="video-overlay" class="video-overlay">
-                            <a class="video-overlay-close">&times;</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.video-img -->
+            <div class="embed-responsive embed-responsive-16by9 video-set">
+                <iframe width="1080" height="560" src="https://www.youtube.com/embed/SQVpx1LFloI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
         </div>
     </div>
     <!-- video-section -->{% endblock body %}
+{% block social %}
+    <div class="footer-social">
+        <div class="" style="align-content: center; margin-left: 7rem; margin-right: auto; width: auto;">
+            <a href="{{ company.facebook }}" target="_blank" class="btn-social-rectangle btn-facebook"><i class="fa fa-facebook"></i></a>
+            <a href="{{ company.twitter }}" target="_blank" class="btn-social-rectangle btn-twitter"><i class="fa fa-twitter"></i></a>
+            <a href="{{ company.instagram }}" target="_blank" class="btn-social-rectangle btn-instagram"><i class="fa fa-instagram"></i></a>
+                            <a href="{{ company.linkedin }}" target="_blank" class="btn-social-rectangle btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                            <a href="#" target="_blank" class="btn-social-rectangle btn-youtube"><i class="fa fa-youtube"></i></a>
+                        </div>
+                    </div>
+{% endblock social %}
+{% block contact %}
+      <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="ft-logo"><img src="{% static '/images/amazing_logo_footer.png' %}" alt=""></div>
+                    <div class="footer-widget">
+                        <div class="contact-info">
+                            <span class="contact-text">{{ company.address }}</span>
+                        </div>
+                        <div class="contact-info">
+                            <span class="contact-text">{{ company.phone_no }}</span>
+                        </div>
+                    </div>
+                </div>
+{% endblock contact %}

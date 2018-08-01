@@ -4,6 +4,17 @@
 {% load comments i18n %}
 {% load widget_tweaks %}
 {% block title %}{{ post.title }}{% endblock title %}
+{% block topBar %}
+    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><a href="{{ company.facebook }}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="{{ company.twitter }}" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="{{ company.linkedin }}" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="{{ company.instagram }}" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                        <li>|</li>
+                        <li>{{ company.phone_no }}</li>
+                    </ul>
+                </div>{% endblock topBar %}
 {% block body %}
     <!-- page-header -->
     <div class="post-pageheader" style="background: url({% static 'images/blog1.jpg' %}) no-repeat;">
@@ -123,3 +134,27 @@
             </div>
         </div>
 {% endblock body %}
+{% block social %}
+    <div class="footer-social">
+                        <div class="" style="align-content: center; margin-left: 7rem; margin-right: auto; width: auto;">
+                            <a href="{{ company.facebook }}" target="_blank" class="btn-social-rectangle btn-facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="{{ company.twitter }}" target="_blank" class="btn-social-rectangle btn-twitter"><i class="fa fa-twitter"></i></a>
+                            <a href="{{ company.instagram }}" target="_blank" class="btn-social-rectangle btn-instagram"><i class="fa fa-instagram"></i></a>
+                            <a href="{{ company.linkedin }}" target="_blank" class="btn-social-rectangle btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                            <a href="#" target="_blank" class="btn-social-rectangle btn-youtube"><i class="fa fa-youtube"></i></a>
+                        </div>
+                    </div>
+{% endblock social %}
+{% block contact %}
+      <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="ft-logo"><img src="{% static '/images/amazing_logo_footer.png' %}" alt=""></div>
+                    <div class="footer-widget">
+                        <div class="contact-info">
+                            <span class="contact-text">{{ company.address }}</span>
+                        </div>
+                        <div class="contact-info">
+                            <span class="contact-text">{{ company.phone_no }}</span>
+                        </div>
+                    </div>
+                </div>
+{% endblock contact %}

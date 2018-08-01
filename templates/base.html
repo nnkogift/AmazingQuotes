@@ -15,6 +15,7 @@
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <!-- Style CSS -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/final.css' %}" rel="stylesheet">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i%7CPT+Serif:400,400i,700,700i" rel="stylesheet">
     <!-- Owl Carousel CSS -->
@@ -37,33 +38,23 @@
     <div class="top-header">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-8 col-md-7 col-sm-6 col-xs-12">
+                <div class="col-lg-8 col-md-7 col-sm-6 col-xs-6">
                     <p class="welcome-text">Welcome to Amazing Quotes Website.</p>
                 </div>
-                <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
-                    <ul>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                        <li>|</li>
-                        <li>+180-123-4567</li>
-                    </ul>
-                </div>
+                {% block topBar %}{% endblock topBar %}
             </div>
         </div>
     </div>
-    <div class="menu-toggel">
-        <a href="#" id="dots" class="dots-icon"><i class="fa fa-ellipsis-v visible-xs"></i></a>
-    </div>
+{#    <div class="menu-toggel">#}
+{#        <a href="#" id="dots" class="dots-icon"><i class="fa fa-ellipsis-v visible-xs"></i></a>#}
+{#    </div>#}
     <!-- /.top-header-section-->
     <!-- header-section-->
     <div class="header-wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-                    <div class="logo">
+                    <div>
                         <a href="{% url 'home:mainPage' %}"><img class="logo_img img-responsive" src="{% static 'images/amazing_logo.png' %}" alt=""> </a>
                     </div>
                 </div>
@@ -97,38 +88,19 @@
     <!-- footer -->
     <div class="footer">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb60">
-                    <div class="footer-social">
-                        <div class="">
-                            <a href="https://www.facebook.com/theAmazingQuotesOfficial/" target="_blank" class="btn-social-rectangle btn-facebook"><i class="fa fa-facebook"></i></a>
-                            <a href="#" class="btn-social-rectangle btn-twitter"><i class="fa fa-twitter"></i></a>
-                            <a href="#" class="btn-social-rectangle btn-googleplus"><i class="fa fa-google-plus"></i></a>
-                            <a href="#" class="btn-social-rectangle btn-instagram"><i class="fa fa-instagram"></i></a>
-                            <a href="#" class="btn-social-rectangle btn-linkedin"><i class="fa fa-linkedin"></i></a>
-                            <a href="#" class="btn-social-rectangle btn-youtube"><i class="fa fa-youtube"></i></a>
-                        </div>
-                    </div>
+            <div class="row align-center">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb60 align-center">
+                    {% block social %}{% endblock social %}
                 </div>
             </div>
         </div>
         <div class="container">
             <div class="row">
                 <!-- footer-contact links -->
-                <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="ft-logo"><img src="{% static '/images/amazing_logo.png' %}" alt=""></div>
-                    <div class="footer-widget">
-                        <div class="contact-info">
-                            <span class="contact-text">951 Meadow View Drive Bristol,USA06010 </span>
-                        </div>
-                        <div class="contact-info">
-                            <span class="contact-text">+180-123-4567</span>
-                        </div>
-                    </div>
-                </div>
+              {% block contact %}{% endblock contact %}
                 <!-- /.footer-useful links -->
                 <!-- footer-company-links -->
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
                     <div class="footer-widget">
                         <h3 class="footer-title">Quick Links</h3>
                         <div class="row">
@@ -150,30 +122,30 @@
                     </div>
                 </div>
                 <!-- /.footer-services-links -->
-                <!-- newsletter -->
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="footer-widget">
-                        <h3 class="footer-title">Join Our Newsletter!</h3>
-                        <p>Get inspiration and education delivered to your inbox.</p>
-                        <form>
-                            <!-- input-group -->
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search Here" aria-describedby="basic-addon2">
-                                <span class="input-group-addon" id="basic-addon2">
-                                                    <i class="fa fa-paper-plane"></i></span>
-                            </div>
-                            <!-- /.input-group -->
-                        </form>
-                    </div>
-                </div>
-                <!-- /.newsletter -->
+{#                <!-- newsletter -->#}
+{#                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">#}
+{#                    <div class="footer-widget">#}
+{#                        <h3 class="footer-title">Join Our Newsletter!</h3>#}
+{#                        <p>Get inspiration and education delivered to your inbox.</p>#}
+{#                        <form>#}
+{#                            <!-- input-group -->#}
+{#                            <div class="input-group">#}
+{#                                <input type="text" class="form-control" placeholder="Search Here" aria-describedby="basic-addon2">#}
+{#                                <span class="input-group-addon" id="basic-addon2">#}
+{#                                                    <i class="fa fa-paper-plane"></i></span>#}
+{#                            </div>#}
+{#                            <!-- /.input-group -->#}
+{#                        </form>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <!-- /.newsletter -->#}
             </div>
             <!-- tiny-footer -->
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                     <div class="tiny-footer">
                         <p>Copyright © Amazing Quotes.
-                            </br> Template Design by
+                            <br/> Template Design by
                             <a href="https://easetemplate.com/" target="_blank" class="copyrightlink">EaseTemplate</a></p>
                     </div>
                 </div>

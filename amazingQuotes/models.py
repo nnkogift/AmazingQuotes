@@ -104,7 +104,21 @@ class Event(models.Model):
         verbose_name_plural = "Events"
 
 
+class EventRegistration(models.Model):
+    name_of_event = models.ForeignKey(Event, related_name='registrar', on_delete=models.CASCADE)
+    name_of_registrar = models.CharField(max_length=128, default='Attendee')
+    email_of_registrar = models.EmailField()
+    phone_no = models.CharField(max_length=15)
+
+    def __str__(self):
+        return self.name_of_registrar
+
+    class Meta:
+        verbose_name_plural="Registered Attendees"
+        verbose_name="Registered Attendee"
+
 #gallery
+
 
 # contacts
 class ContactRequests(models.Model):
