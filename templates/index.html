@@ -44,7 +44,7 @@
                 <!-- coach-service -->
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
                     <div class="coach-service-block">
-                        <div class="coach-service-img"><a href="{% url 'home:coachinglist' %}"><img src="{% static '/images/book.png' %}" alt="" class="img-responsive"></a></div>
+                        <div class="coach-service-img"><a href="{% url 'home:coachinglist' %}"><img src="{% static 'images/book.png' %}" alt="" class="img-responsive"></a></div>
                         <div class="coach-service-content text-center">
                             <span class="coach-service-meta text-primary text-center">Coaching</span>
                             <h4 class="coach-service-title"><a href="{% url 'home:coachinglist' %}">Coaching Services</a></h4>
@@ -56,7 +56,7 @@
                 <!-- coach-service -->
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
                     <div class="coach-service-block">
-                        <div class="coach-service-img"><a href="{%  url 'home:products' %}"><img src="{% static '/images/tshirt.png' %}" alt="" class="img-responsive"></a></div>
+                        <div class="coach-service-img"><a href="{%  url 'home:products' %}"><img src="{% static 'images/tshirt.png' %}" alt="" class="img-responsive"></a></div>
                         <div class="coach-service-content text-center">
                             <span class="coach-service-meta text-default">Products
 </span>
@@ -69,7 +69,7 @@
                 <!-- coach-service -->
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
                     <div class="coach-service-block">
-                        <div class="coach-service-img"><a href="{%  url  'home:events' %}"><img src="{% static '/images/photo_2.png' %}" alt=""style="" class="img-responsive"></a></div>
+                        <div class="coach-service-img"><a href="{%  url  'home:events' %}"><img src="{% static 'images/photo_2.png' %}" alt=""style="" class="img-responsive"></a></div>
                         <div class="coach-service-content text-center">
                             <span class="coach-service-meta text-yellow">Events</span>
                             <h4 class="coach-service-title"><a href="{%  url 'home:events' %}">Events participation</a></h4>
@@ -152,7 +152,7 @@
                     <div class="widget-cta">
                         <div class="widget-cta-icon">
 {#                            <i class="icon-headset-1 text-primary"></i>#}
-                             <img src="{% if product.type_of_product == 'CUP' %}{% static '/images/cup.jpg' %}{% elif product.type_of_product == 'BAND' %}{% static '/images/wrist.png' %} {% elif product.type_of_product == 'TSHIRT' %}{% static '/images/tshirt.png' %}{% else %}{% static '/images/book.png' %}
+                             <img src="{% if product.type_of_product == 'CUP' %}{% static 'images/cup.jpg' %}{% elif product.type_of_product == 'BAND' %}{% static 'images/wrist.png' %} {% elif product.type_of_product == 'TSHIRT' %}{% static 'images/tshirt.png' %}{% else %}{% static 'images/book.png' %}
 
                             {% endif %}" style="width: 100px; height: auto;">
                         </div>
@@ -171,7 +171,7 @@
                                         <h4 class="modal-title w-100 font-weight-bold">Order your {{ product.type_of_product | lower}}</h4>
                                     </div>
                                         <div class="modal-body col-lg-4 col-sm-12">
-                                            <img src="{% if product.type_of_product == 'CUP' %}{% static '/images/cup.jpg' %}{% elif product.type_of_product == 'BAND' %}{% static '/images/wrist.png' %} {% elif product.type_of_product == 'TSHIRT' %}{% static '/images/tshirt.png' %}{% else %}{% static '/images/book.png' %}
+                                            <img src="{% if product.type_of_product == 'CUP' %}{% static 'images/cup.jpg' %}{% elif product.type_of_product == 'BAND' %}{% static 'images/wrist.png' %} {% elif product.type_of_product == 'TSHIRT' %}{% static 'images/tshirt.png' %}{% else %}{% static 'images/book.png' %}
 
                             {% endif %}" style="width: 200px; height: auto;">
                                         </div>
@@ -218,7 +218,7 @@
             <h2>Recent Posts</h2><br/>
                 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                     <div class="posthome-img">
-                        <img src="{% static '/images/post_home_img_1.jpg' %}" alt="" class="img-responsive">
+                        <img src="{% static 'images/post_home_img_1.jpg' %}" alt="" class="img-responsive">
                         <div class="post-caption">
                             <a href="{%  url 'home:blog' %}">Read our Blog</a>
                         </div>
@@ -273,7 +273,7 @@
 {% endblock social %}
 {% block contact %}
       <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="ft-logo"><img src="{% static '/images/amazing_logo_footer.png' %}" alt=""></div>
+                    <div class="ft-logo"><img src="{% static 'images/amazing_logo_footer.png' %}" alt=""></div>
                     <div class="footer-widget">
                         <div class="contact-info">
                             <span class="contact-text">{{ company.address }}</span>

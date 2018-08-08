@@ -49,7 +49,7 @@
                         <!-- product-block -->
                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <div class="product-block">
-                                <div class="product-img text-center"><img style="height: auto; width: 200px" src="{% if product.type_of_product == 'CUP' %}{% static '/images/cup.jpg' %}{% elif product.type_of_product == 'BAND' %}{% static '/images/wrist.png' %} {% elif product.type_of_product == 'TSHIRT' %}{% static '/images/tshirt.png' %}{% else %}{% static '/images/book.png' %}
+                                <div class="product-img text-center"><img style="height: auto; width: 200px" src="{% if product.type_of_product == 'CUP' %}{% static 'images/cup.jpg' %}{% elif product.type_of_product == 'BAND' %}{% static 'images/wrist.png' %} {% elif product.type_of_product == 'TSHIRT' %}{% static 'images/tshirt.png' %}{% else %}{% static 'images/book.png' %}
                             {% endif %}" alt=""></div>
                                 <div class="product-content">
                                     <h3 class="product-title"><a href="#" class="title">{{ product.name }}</a></h3>
@@ -65,7 +65,7 @@
                                         <h4 class="modal-title w-100 font-weight-bold">Order your {{ product.type_of_product | lower}}</h4>
                                     </div>
                                     <div class="modal-body col-lg-4 col-sm-12">
-                                        <img src="{% if product.type_of_product == 'CUP' %}{% static '/images/cup.jpg' %}{% elif product.type_of_product == 'BAND' %}{% static '/images/wrist.png' %} {% elif product.type_of_product == 'TSHIRT' %}{% static '/images/tshirt.png' %}{% else %}{% static '/images/book.png' %}
+                                        <img src="{% if product.type_of_product == 'CUP' %}{% static 'images/cup.jpg' %}{% elif product.type_of_product == 'BAND' %}{% static 'images/wrist.png' %} {% elif product.type_of_product == 'TSHIRT' %}{% static 'images/tshirt.png' %}{% else %}{% static 'images/book.png' %}
 
                             {% endif %}" style="width: 200px; height: auto;">
                                     </div>
@@ -113,7 +113,7 @@
 {% endblock social %}
 {% block contact %}
       <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="ft-logo"><img src="{% static '/images/amazing_logo_footer.png' %}" alt=""></div>
+                    <div class="ft-logo"><img src="{% static 'images/amazing_logo_footer.png' %}" alt=""></div>
                     <div class="footer-widget">
                         <div class="contact-info">
                             <span class="contact-text">{{ company.address }}</span>
