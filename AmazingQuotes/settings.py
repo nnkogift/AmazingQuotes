@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'AmazingQuotes.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-'default': dj_database_url.config(
+'default': config(
     default=config('DATABASE_URL')
     )
 }
