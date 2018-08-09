@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'gdstorage',
     'django.contrib.sites',
     'django.contrib.humanize',
     'django_comments',
@@ -96,6 +97,13 @@ DATABASES = {
     default=config('DATABASE_URL')
     )
 }
+#
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -143,7 +151,7 @@ STATICFILES_DIRS = [
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
+MEDIA_ROOT = decouple.config('MEDIA_ROOT', default=os.path.join(BASE_DIR, 'mediafiles'))
 
 SITE_ID = 1
 
@@ -167,4 +175,6 @@ if not DEBUG:
     EMAIL_HOST_PASSWORD = 'gianttallY'
 
 
+# Google drive Storage Settings
 
+GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = os.path.join(BASE_DIR, 'My Project-6935dd1416a6.json')

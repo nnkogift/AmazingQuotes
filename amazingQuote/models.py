@@ -1,6 +1,8 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from gdstorage.storage import GoogleDriveStorage
 
+gd_storage = GoogleDriveStorage()
 # Create your models here.
 
 
@@ -14,7 +16,7 @@ class TeamMember(models.Model):
     name = models.CharField(max_length=64, verbose_name='Name of Team member')
     title = models.CharField(max_length=64, verbose_name="Position")
     about = models.TextField(verbose_name="About You")
-    image = models.ImageField(verbose_name="Profile image")
+    image = models.ImageField(verbose_name="Profile image", upload_to='team', storage=gd_storage)
     email = models.EmailField(verbose_name='Email', default='amazingquotes@gmail.com')
     phone_no = models.CharField(max_length=15, default='+255712626160')
     speaker = models.CharField(max_length=5, choices=speaking, default='NO')
@@ -94,7 +96,7 @@ class Event(models.Model):
     description = models.TextField(verbose_name="About event", default='This is one of our'
                                                                        ' events you will never forget.')
     video_url = models.URLField(verbose_name="Video", default='https://www.youtube.com/watch?v=SQVpx1LFloI&t=79s', blank=True)
-    image = models.ImageField(default='media/Albert-Einstein-Quote-About-Life-Wallpaper.png', verbose_name='Event Poster')
+    image = models.ImageField(default='media/Albert-Einstein-Quote-About-Life-Wallpaper.png', verbose_name='Event Poster', upload_to='events', storage=gd_storage)
 
     def __str__(self):
         return self.name
@@ -151,7 +153,7 @@ class Order(models.Model):
 class Quote(models.Model):
     content = models.TextField(verbose_name='The quote')
     writer = models.CharField(verbose_name='Quote by', max_length=64)
-    quote_image = models.ImageField(verbose_name='Quote Image')
+    quote_image = models.ImageField(verbose_name='Quote Image', upload_to='quotes', storage=gd_storage)
     date_of_publish = models.DateField(verbose_name='Date to be published', unique=True, auto_created=False,
                                        auto_now=False)
 
@@ -173,7 +175,7 @@ class TrainingTopic(models.Model):
     name = models.CharField(max_length=64)
     category = models.CharField(max_length=20, choices=post_category, default='LIFE COACHING')
     description = models.TextField()
-    speaker = models.ForeignKey(TeamMember,on_delete=models.CASCADE)
+    speaker = models.ForeignKey(TeamMember, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
