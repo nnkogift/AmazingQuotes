@@ -1,8 +1,9 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 from gdstorage.storage import GoogleDriveStorage
-
+from urllib.parse import unquote
 gd_storage = GoogleDriveStorage()
+
 # Create your models here.
 
 
@@ -20,16 +21,26 @@ class TeamMember(models.Model):
     email = models.EmailField(verbose_name='Email', default='amazingquotes@gmail.com')
     phone_no = models.CharField(max_length=15, default='+255712626160')
     speaker = models.CharField(max_length=5, choices=speaking, default='NO')
+    image_url = models.URLField(auto_created=True, blank=True, null=True)
 
     def __str__(self):
         return self.name
+
+    def get_image_url(self):
+        image_id = self.image.url
+        print(image_id)
+        return image_id
+
+    def save(self, *args, **kwargs):
+        self.image_url = self.get_image_url()
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "Team Member"
         verbose_name_plural = "Team Members"
 
 
-#products
+# products
 class Product(models.Model):
     product_type = {
         ('BOOK', "Book"),
@@ -56,7 +67,7 @@ class Product(models.Model):
         verbose_name_plural = "Products"
 
 
-#about amazing quotes
+# about amazing quotes
 class AmazingQuotesAbout(models.Model):
     name = models.CharField(max_length=128)
     description = models.TextField(verbose_name="About Amazing Quotes")
@@ -64,11 +75,11 @@ class AmazingQuotesAbout(models.Model):
     email = models.EmailField(default='amazingquotes@gmail.com')
     address = models.CharField(max_length=128, verbose_name='Address', default='Dar es Salaam')
     facebook = models.URLField(max_length=128, default='https://facebook.com/amazingquotes',
-                                verbose_name='Facebook link')
+                               verbose_name='Facebook link')
     instagram = models.URLField(max_length=128, default='https://insta.com/amazingquotes',
                                 verbose_name='Instagram link')
     twitter = models.URLField(max_length=128, default='https://twitter.com/amazingquotes',
-                                verbose_name='Twitter link')
+                              verbose_name='Twitter link')
     linkedin = models.CharField(max_length=128, default='https://linkedin.com/amazingquotes',
                                 verbose_name='Linkedin link')
 
@@ -82,10 +93,10 @@ class AmazingQuotesAbout(models.Model):
 
     class Meta:
         verbose_name = "About Amazing Quotes"
-        verbose_name_plural= "About Amazing Quotes"
+        verbose_name_plural = "About Amazing Quotes"
 
 
-#events
+# events
 class Event(models.Model):
     name = models.CharField(max_length=128)
     type_of_event = models.CharField(max_length=128)
@@ -95,11 +106,23 @@ class Event(models.Model):
     price = models.IntegerField(verbose_name="Price (0 if free)", default=0)
     description = models.TextField(verbose_name="About event", default='This is one of our'
                                                                        ' events you will never forget.')
-    video_url = models.URLField(verbose_name="Video", default='https://www.youtube.com/watch?v=SQVpx1LFloI&t=79s', blank=True)
-    image = models.ImageField(default='media/Albert-Einstein-Quote-About-Life-Wallpaper.png', verbose_name='Event Poster', upload_to='events', storage=gd_storage)
+    video_url = models.URLField(verbose_name="Video", default='https://www.youtube.com/watch?v=SQVpx1LFloI&t=79s',
+                                blank=True)
+    image = models.ImageField(default='media/Albert-Einstein-Quote-About-Life-Wallpaper.png',
+                              verbose_name='Event Poster', upload_to='events', storage=gd_storage)
+    image_url = models.URLField(auto_created=True, blank=True, null=True)
 
     def __str__(self):
         return self.name
+
+    def get_image_url(self):
+        image_id = unquote(self.image.url).split("/")[-2]
+        print(image_id)
+        return image_id
+
+    def save(self, *args, **kwargs):
+        self.image_url = self.get_image_url()
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Event'
@@ -116,10 +139,11 @@ class EventRegistration(models.Model):
         return self.name_of_registrar
 
     class Meta:
-        verbose_name_plural="Registered Attendees"
-        verbose_name="Registered Attendee"
+        verbose_name_plural = "Registered Attendees"
+        verbose_name = "Registered Attendee"
 
-#gallery
+
+# gallery
 
 
 # contacts
@@ -156,12 +180,22 @@ class Quote(models.Model):
     quote_image = models.ImageField(verbose_name='Quote Image', upload_to='quotes', storage=gd_storage)
     date_of_publish = models.DateField(verbose_name='Date to be published', unique=True, auto_created=False,
                                        auto_now=False)
+    image_url = models.URLField(auto_created=True, blank=True, null=True)
 
     def __str__(self):
         return self.writer
 
+    def get_image_url(self):
+        image_id = unquote(self.quote_image.url).split("/")[-2]
+        print(image_id)
+        return image_id
+
+    def save(self, *args, **kwargs):
+        self.image_url = self.get_image_url()
+        super().save(*args, **kwargs)
+
     class Meta:
-        verbose_name='Quote of the Day'
+        verbose_name = 'Quote of the Day'
         verbose_name_plural = 'Daily quotes'
 
 

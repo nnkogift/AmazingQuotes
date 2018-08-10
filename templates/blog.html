@@ -59,7 +59,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 ">
                             <div class="post-block">
                                 <!-- post block -->
-                                <div class="post-img"><a href="{% url 'home:single_post' id=post.id %}"><img src="{{ post.image.url }}" alt="" class="img-responsive" style="height: 200px; width: auto;"></a></div>
+                                <div class="post-img"><a href="{% url 'home:single_post' id=post.id %}"><img src="https://drive.google.com/uc?export=view&id={{ post.image_url }}" alt="" class="img-responsive" style="height: 200px; width: auto;"></a></div>
                                 <div class="post-content">
                                     <div class="meta"><a href="#" class="meta-categories text-primary">{{ post.category }}</a></div>
                                     <h3 class="post-title"><a href="{% url 'home:single_post' id=post.id %}" class="title">{{ post.title }}</a></h3>
