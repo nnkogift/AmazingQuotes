@@ -27,7 +27,7 @@ class TeamMember(models.Model):
         return self.name
 
     def get_image_url(self):
-        image_id = self.image.url
+        image_id = unquote(self.image.url).split("/")[-2]
         print(image_id)
         return image_id
 
