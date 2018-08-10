@@ -26,14 +26,13 @@ class Post(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(null=True, blank=True, upload_to='blog_posts', storage=gd_storage, )
     feature = models.CharField(max_length=5, default='NO', choices=featured, verbose_name='Featured?')
-    image_url = models.URLField(auto_created=True, blank=True, null=True)
+    image_url = None
 
     def __str__(self):
         return self.title
 
     def get_image_url(self):
         image_id = unquote(self.image.url).split("/")[-2]
-        print(image_id)
         return image_id
 
     def save(self, *args, **kwargs):

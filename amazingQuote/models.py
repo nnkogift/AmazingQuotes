@@ -13,7 +13,7 @@ class TeamMember(models.Model):
         ('YES', 'Yes'),
         ('NO', 'No')
     }
-
+    image_url = None
     name = models.CharField(max_length=64, verbose_name='Name of Team member')
     title = models.CharField(max_length=64, verbose_name="Position")
     about = models.TextField(verbose_name="About You")
@@ -21,7 +21,6 @@ class TeamMember(models.Model):
     email = models.EmailField(verbose_name='Email', default='amazingquotes@gmail.com')
     phone_no = models.CharField(max_length=15, default='+255712626160')
     speaker = models.CharField(max_length=5, choices=speaking, default='NO')
-    image_url = models.URLField(auto_created=True, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -110,7 +109,7 @@ class Event(models.Model):
                                 blank=True)
     image = models.ImageField(default='media/Albert-Einstein-Quote-About-Life-Wallpaper.png',
                               verbose_name='Event Poster', upload_to='events', storage=gd_storage)
-    image_url = models.URLField(auto_created=True, blank=True, null=True)
+    image_url = None
 
     def __str__(self):
         return self.name
@@ -180,7 +179,7 @@ class Quote(models.Model):
     quote_image = models.ImageField(verbose_name='Quote Image', upload_to='quotes', storage=gd_storage)
     date_of_publish = models.DateField(verbose_name='Date to be published', unique=True, auto_created=False,
                                        auto_now=False)
-    image_url = models.URLField(auto_created=True, blank=True, null=True)
+    image_url = None
 
     def __str__(self):
         return self.writer
