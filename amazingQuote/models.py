@@ -13,7 +13,8 @@ class TeamMember(models.Model):
         ('YES', 'Yes'),
         ('NO', 'No')
     }
-    image_url = None
+    image_url = models.CharField(max_length=128, blank=True, null=True, auto_created=True,
+                                 default='Dont edit this field')
     name = models.CharField(max_length=64, verbose_name='Name of Team member')
     title = models.CharField(max_length=64, verbose_name="Position")
     about = models.TextField(verbose_name="About You")
@@ -26,9 +27,14 @@ class TeamMember(models.Model):
         return self.name
 
     def get_image_url(self):
-        image_id = unquote(self.image.url).split("/")[-2]
-        print(image_id)
-        return image_id
+        # get the image url from the source itself
+        image_url = gd_storage.url(self.image.name)
+        print(image_url)
+        if image_url:
+            image_id = unquote(image_url).split("/")[-2]
+            print(image_id)
+            return image_id
+        return None
 
     def save(self, *args, **kwargs):
         self.image_url = self.get_image_url()
@@ -109,15 +115,21 @@ class Event(models.Model):
                                 blank=True)
     image = models.ImageField(default='media/Albert-Einstein-Quote-About-Life-Wallpaper.png',
                               verbose_name='Event Poster', upload_to='events', storage=gd_storage)
-    image_url = None
+    image_url = models.CharField(max_length=128, blank=True, null=True, auto_created=True,
+                                 default='Dont edit this field')
 
     def __str__(self):
         return self.name
 
     def get_image_url(self):
-        image_id = unquote(self.image.url).split("/")[-2]
-        print(image_id)
-        return image_id
+        # get the image url from the source itself
+        image_url = gd_storage.url(self.image.name)
+        print(image_url)
+        if image_url:
+            image_id = unquote(image_url).split("/")[-2]
+            print(image_id)
+            return image_id
+        return None
 
     def save(self, *args, **kwargs):
         self.image_url = self.get_image_url()
@@ -179,15 +191,21 @@ class Quote(models.Model):
     quote_image = models.ImageField(verbose_name='Quote Image', upload_to='quotes', storage=gd_storage)
     date_of_publish = models.DateField(verbose_name='Date to be published', unique=True, auto_created=False,
                                        auto_now=False)
-    image_url = None
+    image_url = models.CharField(max_length=128, blank=True, null=True, auto_created=True,
+                                 default='Dont edit this field')
 
     def __str__(self):
         return self.writer
 
     def get_image_url(self):
-        image_id = unquote(self.quote_image.url).split("/")[-2]
-        print(image_id)
-        return image_id
+        # get the image url from the source itself
+        image_url = gd_storage.url(self.quote_image.name)
+        print(image_url)
+        if image_url:
+            image_id = unquote(image_url).split("/")[-2]
+            print(image_id)
+            return image_id
+        return None
 
     def save(self, *args, **kwargs):
         self.image_url = self.get_image_url()
