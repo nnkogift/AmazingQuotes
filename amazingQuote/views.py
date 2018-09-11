@@ -4,6 +4,7 @@ from django.shortcuts import render,get_object_or_404
 from django.utils.timezone import now
 from django.views.decorators.csrf import csrf_protect
 
+from amazingQuote.models import SliderImages
 from blog.models import Post
 from . import models
 # Create your views here.
@@ -13,16 +14,24 @@ from amazingQuote.forms import ContactForm, OrderForm, EventRegistrationForm
 
 
 def home_view(request):
+    # getter for the company details
     company = models.AmazingQuotesAbout.objects.first()
+    # products getter
     prop = models.Product.objects.filter(feature='YES')
+    # posts for the blog
     posts = Post.objects.filter(feature='YES')
-    ceo = models.TeamMember.objects.filter(title='CEO')
+    # ceo and his details
+    ceo = get_object_or_404(models.TeamMember, title='CEO')
+    # the order form for the products
     order_form = OrderForm(request.POST or None)
+    # products specifier - for ordering of the products - currently does not work
     prod_id = request.GET.get('product_id')
-    if get_object_or_404(models.Quote, date_of_publish=now()):
-        daily_quote = get_object_or_404(models.Quote, date_of_publish=now())
-    else:
-        daily_quote=models.Quote.objects.first()
+    # slider_images getter
+    slider_images=SliderImages.objects.all()
+    # the daily quote getter
+    daily_quote = get_object_or_404(models.Quote, date_of_publish=now())
+
+    # the order form for the order model
     if order_form.is_valid():
         instance = order_form.save(commit=False)
         order_form.instance.product_id = prod_id
@@ -35,7 +44,8 @@ def home_view(request):
         'order_form': order_form,
         'posts': posts,
         'ceo': ceo,
-        'daily_quote': daily_quote
+        'daily_quote': daily_quote,
+        'slider_images': slider_images
 
     }
     return render(request, 'index.html', context=context)

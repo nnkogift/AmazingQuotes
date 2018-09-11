@@ -1,0 +1,14 @@
+
+Uploading static files
+gsutil rsync -R static/ gs://<your-gcs-bucket>/static
+
+Getting the connection string
+gcloud beta sql instances describe [YOUR_INSTANCE_NAME]
+
+Creating and configuring buckets thro' commands
+gsutil mb gs://<your-gcs-bucket>
+gsutil defacl set public-read gs://<your-gcs-bucket>
+
+creating a local connection to the database
+./cloud_sql_proxy -instances="amazingquotes-215218:us-central1:amazingquotesdbase"=tcp:5432
+

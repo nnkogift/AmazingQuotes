@@ -39,3 +39,8 @@ link with social media
  Paragraph - #525756
 
 
+# todo
+- change the homepage
+- fill up the content
+- fix the image uploads
+- shift the app to google

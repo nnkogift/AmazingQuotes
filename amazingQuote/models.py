@@ -1,8 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.db import models
-from gdstorage.storage import GoogleDriveStorage
 from urllib.parse import unquote
-gd_storage = GoogleDriveStorage()
+
 
 # Create your models here.
 
@@ -18,7 +17,7 @@ class TeamMember(models.Model):
     name = models.CharField(max_length=64, verbose_name='Name of Team member')
     title = models.CharField(max_length=64, verbose_name="Position")
     about = models.TextField(verbose_name="About You")
-    image = models.ImageField(verbose_name="Profile image", upload_to='team', storage=gd_storage)
+    image = models.ImageField(verbose_name="Profile image", upload_to='Team' ) # upload_to='team', storage=gd_storage
     email = models.EmailField(verbose_name='Email', default='amazingquotes@gmail.com')
     phone_no = models.CharField(max_length=15, default='+255712626160')
     speaker = models.CharField(max_length=5, choices=speaking, default='NO')
@@ -26,19 +25,19 @@ class TeamMember(models.Model):
     def __str__(self):
         return self.name
 
-    def get_image_url(self):
-        # get the image url from the source itself
-        image_url = gd_storage.url(self.image.name)
-        print(image_url)
-        if image_url:
-            image_id = unquote(image_url).split("/")[-2]
-            print(image_id)
-            return image_id
-        return None
+    # def get_image_url(self):
+    #     # get the image url from the source itself
+    #     image_url = gd_storage.url(self.image.name)
+    #     print(image_url)
+    #     if image_url:
+    #         image_id = unquote(image_url).split("/")[-2]
+    #         print(image_id)
+    #         return image_id
+    #     return None
 
-    def save(self, *args, **kwargs):
-        self.image_url = self.get_image_url()
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     self.image_url = self.get_image_url()
+    #     super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "Team Member"
@@ -75,6 +74,7 @@ class Product(models.Model):
 # about amazing quotes
 class AmazingQuotesAbout(models.Model):
     name = models.CharField(max_length=128)
+    tagline = models.CharField(max_length=1024, default="")
     description = models.TextField(verbose_name="About Amazing Quotes")
     phone_no = models.CharField(max_length=20, default='0712626160')
     email = models.EmailField(default='amazingquotes@gmail.com')
@@ -114,26 +114,26 @@ class Event(models.Model):
     video_url = models.URLField(verbose_name="Video", default='https://www.youtube.com/watch?v=SQVpx1LFloI&t=79s',
                                 blank=True)
     image = models.ImageField(default='media/Albert-Einstein-Quote-About-Life-Wallpaper.png',
-                              verbose_name='Event Poster', upload_to='events', storage=gd_storage)
+                              verbose_name='Event Poster', upload_to='Events')
     image_url = models.CharField(max_length=128, blank=True, null=True, auto_created=True,
                                  default='Dont edit this field')
 
     def __str__(self):
         return self.name
 
-    def get_image_url(self):
-        # get the image url from the source itself
-        image_url = gd_storage.url(self.image.name)
-        print(image_url)
-        if image_url:
-            image_id = unquote(image_url).split("/")[-2]
-            print(image_id)
-            return image_id
-        return None
-
-    def save(self, *args, **kwargs):
-        self.image_url = self.get_image_url()
-        super().save(*args, **kwargs)
+    # def get_image_url(self):
+    #     # get the image url from the source itself
+    #     image_url = gd_storage.url(self.image.name)
+    #     print(image_url)
+    #     if image_url:
+    #         image_id = unquote(image_url).split("/")[-2]
+    #         print(image_id)
+    #         return image_id
+    #     return None
+    #
+    # def save(self, *args, **kwargs):
+    #     self.image_url = self.get_image_url()
+    #     super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Event'
@@ -188,7 +188,7 @@ class Order(models.Model):
 class Quote(models.Model):
     content = models.TextField(verbose_name='The quote')
     writer = models.CharField(verbose_name='Quote by', max_length=64)
-    quote_image = models.ImageField(verbose_name='Quote Image', upload_to='quotes', storage=gd_storage)
+    quote_image = models.ImageField(verbose_name='Quote Image', upload_to='Quotes') #  upload_to='quotes', storage=gd_storage
     date_of_publish = models.DateField(verbose_name='Date to be published', unique=True, auto_created=False,
                                        auto_now=False)
     image_url = models.CharField(max_length=128, blank=True, null=True, auto_created=True,
@@ -197,19 +197,19 @@ class Quote(models.Model):
     def __str__(self):
         return self.writer
 
-    def get_image_url(self):
-        # get the image url from the source itself
-        image_url = gd_storage.url(self.quote_image.name)
-        print(image_url)
-        if image_url:
-            image_id = unquote(image_url).split("/")[-2]
-            print(image_id)
-            return image_id
-        return None
+    # def get_image_url(self):
+    #     # get the image url from the source itself
+    #     image_url = gd_storage.url(self.quote_image.name)
+    #     print(image_url)
+    #     if image_url:
+    #         image_id = unquote(image_url).split("/")[-2]
+    #         print(image_id)
+    #         return image_id
+    #     return None
 
-    def save(self, *args, **kwargs):
-        self.image_url = self.get_image_url()
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     self.image_url = 'images'    # self.get_image_url()
+    #     super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Quote of the Day'
@@ -230,3 +230,30 @@ class TrainingTopic(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class SliderImages(models.Model):
+    name = models.CharField(max_length=128)
+    slider_image = models.ImageField(verbose_name="Slider Image", upload_to='Slider Images')
+
+    def __str__(self):
+        return self.name
+
+    # def get_image_url(self):
+    #     # get the image url from the source itself
+    #     image_url = gd_storage.url(self.slider_image.name)
+    #     print(image_url)
+    #     if image_url:
+    #         image_id = unquote(image_url).split("/")[-2]
+    #         print(image_id)
+    #         return image_id
+    #     return None
+
+    # def save(self, *args, **kwargs):
+    #     self.image_url = self.get_image_url()
+    #     super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = 'Slider image'
+        verbose_name_plural = "Slider Images"
+

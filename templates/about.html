@@ -21,8 +21,8 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="about-caption">
-                        <h1 class="about-title">Amazing Quotes</h1>
-                        <p class="about-text text-white">“Happiness, Potential and Value of Positive thinking are our middle names”
+                        <h1 class="about-title">{{ company.name }}</h1>
+                        <p class="about-text text-white">{{ company.tagline }}
                         </p>
                     </div>
                 </div>
@@ -32,12 +32,13 @@
     <!-- /.page-header-->
     <!-- about-section -->
     <div class="space-medium">
+    <div class="text-center"><h2>About us</h2></div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb30">
                     <!-- about-description -->
-                    <div class="about-description ">
-                        <p>{{ comp.description | linebreaks }}</p>
+                    <div class="about-description text-center">
+                        <p>{{ company.description | linebreaks }}</p>
                     </div>
                     <!-- /.about-description -->
                 </div>
@@ -94,7 +95,7 @@
                     <!-- team-block -->
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="padding-bottom: 2pc;">
                         <div class="team-block">
-                            <div class="team-img"><a href="#" class="imghover"  data-toggle="modal" data-target="#{{ member.id }}" data-id="{{ member.id }}"><img src="https://drive.google.com/uc?export=view&id={{ member.image_url }}" alt=""></a></div>
+                            <div class="team-img"><a href="#" class="imghover"  data-toggle="modal" data-target="#{{ member.id }}" data-id="{{ member.id }}"><img src="{{ member.image.url }}" alt=""></a></div>
                             <div class="team-content">
                                 <h3 class="team-title"><a href="#" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="Click for more info" data-target="#member" class="text-white">{{ member.name }}</a></h3>
                                 <h5 class="text-white">{% if member.title == 'CEO' %}Chief Executive Officer{% else %}{{ member.title }}{% endif %}</h5>
@@ -111,7 +112,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="container">
-                                        <div class="col-lg-2"><img class="img-responsive" style="width: 200px; height: auto;"  src="https://drive.google.com/uc?export=view&id={{ member.image_url }}"></div>
+                                        <div class="col-lg-2"><img class="img-responsive" style="width: 200px; height: auto;"  src="{{ member.image.url }}"></div>
                                         <ul>
                                             <li>Title: {% if member.title == 'CEO' %}Chief Executive Officer{% else %}{{ member.title }}{% endif %}</li>
                                             <li>Email: {{ member.email }}</li>
