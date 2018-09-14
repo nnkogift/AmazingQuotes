@@ -2,7 +2,7 @@ from urllib.parse import unquote
 
 from django.contrib.auth.models import User
 from django.db import models
-from gdstorage.storage import GoogleDriveStorage
+
 
 
 # Create your models here.

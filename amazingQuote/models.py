@@ -1,6 +1,5 @@
 from django.core.exceptions import ValidationError
 from django.db import models
-from gdstorage.storage import GoogleDriveStorage
 from urllib.parse import unquote
 
 # Create your models here.
@@ -187,3 +186,12 @@ class TrainingTopic(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class SliderImages(models.Model):
+    name = models.CharField(max_length=128)
+    slider_image = models.ImageField(verbose_name="Slider Image", upload_to='Slider Images')
+
+    def __str__(self):
+        return self.name
+
