@@ -25,6 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = decouple.config('DEBUG', default=True, cast=bool)
+CLOUDINARY_URL = decouple.config('CLOUDINARY_URL', default='cloudinary://146187356637117:fbQETZSlXxZh5mDXypD1KIGttSA@hdkxi3gej')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
@@ -37,13 +38,18 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_interface',
+    'flat_responsive',
+    'flat',
+    'colorfield',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gdstorage',
+    'cloudinary_storage',
+    'cloudinary',
     'django.contrib.sites',
     'django.contrib.humanize',
     'django_comments',
@@ -151,7 +157,7 @@ STATICFILES_DIRS = [
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = decouple.config('MEDIA_ROOT', default=os.path.join(BASE_DIR, 'mediafiles'))
+MEDIA_ROOT = decouple.config('MEDIA_ROOT', default=os.path.join(BASE_DIR, 'media'))
 
 SITE_ID = 1
 
@@ -175,6 +181,5 @@ if not DEBUG:
     EMAIL_HOST_PASSWORD = 'gianttallY'
 
 
-# Google drive Storage Settings
 
-GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = os.path.join(BASE_DIR, 'My Project-6935dd1416a6.json')
+

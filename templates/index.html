@@ -5,7 +5,7 @@
 {% block topBar %}
     <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6">
                     <ul>
-                        <li><a href="{{ company.facebook }}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="{{ company.facebook }}" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                         <li><a href="{{ company.twitter }}" target="_blank"><i class="fa fa-twitter"></i></a></li>
                         <li><a href="{{ company.linkedin }}" target="_blank"><i class="fa fa-linkedin"></i></a></li>
                         <li><a href="{{ company.instagram }}" target="_blank"><i class="fa fa-instagram"></i></a></li>
@@ -17,15 +17,11 @@
     <!-- slider -->
     <div class="slider">
         <div class="owl-carousel owl-one owl-theme">
+            {% for image in slider_images %}
             <div class="item">
-                <div class="slider-img"> <img src="{% static 'images/slider_1.jpg' %}" alt="" style="height: 75%"></div>
+                <div class="slider-img"> <img src="{{ image.slider_image.url }}" alt="" style="height: 75%"></div>
             </div>
-            <div class="item">
-                <div class="slider-img"> <img src="{% static 'images/slider_2.jpg' %}" alt=""></div>
-            </div>
-            <div class="item">
-                <div class="slider-img"> <img src=".{% static 'images/slider_2.jpg' %}" alt=""></div>
-            </div>
+            {% endfor %}
         </div>
     </div>
     <!-- /.slider -->
@@ -36,57 +32,29 @@
             </div>
         </div>
     </div>
-    <!-- coachservice-section -->
+    <!-- aboutus-section -->
     <div class="space-medium">
-    <div class="text-center"><h2>Our Services</h2></div>
+    <div class="text-center"><h2>About us</h2></div>
         <div class="container">
             <div class="row">
-                <!-- coach-service -->
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
-                    <div class="coach-service-block">
-                        <div class="coach-service-img"><a href="{% url 'home:coachinglist' %}"><img src="{% static 'images/book.png' %}" alt="" class="img-responsive"></a></div>
-                        <div class="coach-service-content text-center">
-                            <span class="coach-service-meta text-primary text-center">Coaching</span>
-                            <h4 class="coach-service-title"><a href="{% url 'home:coachinglist' %}">Coaching Services</a></h4>
-                            <p class=" mb20">We offer coaching services to motivation events.</p>
-                        </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb30">
+                    <!-- about-description -->
+                    <div class="about-description text-center">
+                        <p>{{ company.description | linebreaks | truncatewords:100 }}</p>
+                         <div class="row text-center"><a href="{% url 'home:about' %}" class="btn-link">Learn More</a> </div>
                     </div>
+                    <!-- /.about-description -->
                 </div>
-                <!-- /.coach-service -->
-                <!-- coach-service -->
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
-                    <div class="coach-service-block">
-                        <div class="coach-service-img"><a href="{%  url 'home:products' %}"><img src="{% static 'images/tshirt.png' %}" alt="" class="img-responsive"></a></div>
-                        <div class="coach-service-content text-center">
-                            <span class="coach-service-meta text-default">Products
-</span>
-                            <h4 class="coach-service-title"><a href="{% url  'home:products' %}">Amazing Products</a></h4>
-                            <p class=" mb20">We have variety of products that are motivative and inspiring.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.coach-service -->
-                <!-- coach-service -->
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
-                    <div class="coach-service-block">
-                        <div class="coach-service-img"><a href="{%  url  'home:events' %}"><img src="{% static 'images/photo_2.png' %}" alt=""style="" class="img-responsive"></a></div>
-                        <div class="coach-service-content text-center">
-                            <span class="coach-service-meta text-yellow">Events</span>
-                            <h4 class="coach-service-title"><a href="{%  url 'home:events' %}">Events participation</a></h4>
-                            <p class=" mb20">We prepare different motivation events especially with youth.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.coach-service -->
             </div>
         </div>
     </div>
-    <!--/.coachservice-section -->
+    <!--/.about us -section -->
     <div class="space-medium bg-gradient">
     <div class="container">
-        <div class="row">
+        {% if daily_quote %}
+            <div class="row">
             <div class="col-lg-6 col-sm-12">
-                <div class="row text-center"><h2 class="about-title"> Quote of the day</h2>
+                <div class="row text-center"><h2 class="about-title">Quote of the day</h2>
                 <div class="about-me">
                     <p class="mb30">"{{ daily_quote.content }}"</p>
                     <p class="text-center lead">~{{ daily_quote.writer }}</p>
@@ -95,25 +63,25 @@
                 <br/>
             </div>
             <div class="col-lg-offset-1 col-lg-4 col-md-offset-1 col-md-4 col-sm-12 col-xs-12">
-                        <img src="https://drive.google.com/uc?export=view&id={{ daily_quote.image_url }}" alt="" class="img-responsive">
+                        <img src="{{ daily_quote.quote_image.url }}" alt="" class="img-responsive">
                 </div>
         </div>
+        {% endif %}
     </div>
     
     </div>
-
+    {% if ceo %}
     <!-- about-section -->
     <div class="space-medium ">
         <div class="container">
             <div class="row text-center">
-                {% for ce in ceo %}
                 <h2>Meet the CEO</h2>
                 <!-- about-description -->
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="about-me">
-                        <h2 class="about-title">{{ ce.name | capfirst }}</h2>
+                        <h2 class="about-title">{{ ceo.name | capfirst }}</h2>
                         <p class="lead">Founder & CEO</p>
-                        <p class="mb30">{{ ce.about }}</p>&nbsp; &nbsp;
+                        <p class="mb30">{{ ceo.about }}</p>&nbsp; &nbsp;
                         <a href="{% url  'home:about' %}" class="btn-link">Meet the whole team</a>
                     </div>
                 </div>
@@ -122,97 +90,97 @@
                 <!-- about-profile -->
                 <div class="col-lg-offset-1 col-lg-4 col-md-offset-1 col-md-4 col-sm-12 col-xs-12">
                     <div class="profile-img">
-                        <img src="https://drive.google.com/uc?export=view&id={{ ce.image_url }}" alt="" class="img-responsive">
+                        <img src="{{ ceo.image.url }}" alt="" class="img-responsive">
                     </div>
                 </div>
-                {% endfor %}
                 <!-- /.about-profile -->
             </div>
         </div>
     </div>
     <!-- /.about-section -->
+    {% endif %}
     <!-- feature-section -->
-    <div class="space-medium">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="cta-single-line-text text-center">
-                        <h2>Want to hire a speaker for a motivation event?</h2>
-                        <a href="{% url 'home:coachinglist' %}" class="btn btn-default">See our offered coaching topics</a>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="text-center">
-                    <h2>Featured products</h2>
-                </div>
-                {% for product in products %}
-                <!-- feature-boxed -->
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="widget-cta">
-                        <div class="widget-cta-icon">
+{#    <div class="space-medium">#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">#}
+{#                    <div class="cta-single-line-text text-center">#}
+{#                        <h2>Want to hire a speaker for a motivation event?</h2>#}
+{#                        <a href="{% url 'home:coachinglist' %}" class="btn btn-default">See our offered coaching topics</a>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                <div class="text-center">#}
+{#                    <h2>Featured products</h2>#}
+{#                </div>#}
+{#                {% for product in products %}#}
+{#                <!-- feature-boxed -->#}
+{#                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">#}
+{#                    <div class="widget-cta">#}
+{#                        <div class="widget-cta-icon">#}
 {#                            <i class="icon-headset-1 text-primary"></i>#}
-                             <img src="{% if product.type_of_product == 'CUP' %}{% static 'images/cup.jpg' %}{% elif product.type_of_product == 'BAND' %}{% static 'images/wrist.png' %} {% elif product.type_of_product == 'TSHIRT' %}{% static 'images/tshirt.png' %}{% else %}{% static 'images/book.png' %}
-
-                            {% endif %}" style="width: 100px; height: auto;">
-                        </div>
-                        <div class="widget-cta-content">
-                            <h4>Get this Amazing {{ product.type_of_product |lower }} with our amazing logo to motivate you</h4>
-                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#{{ product.id }}order">Order Now</a>
-                        </div>
-                    </div>
-                 <span> <br/><br/></span>
-                </div>
-
-                     <div class="modal fade" id="{{ product.id }}order" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header text-center">
-                                        <h4 class="modal-title w-100 font-weight-bold">Order your {{ product.type_of_product | lower}}</h4>
-                                    </div>
-                                        <div class="modal-body col-lg-4 col-sm-12">
-                                            <img src="{% if product.type_of_product == 'CUP' %}{% static 'images/cup.jpg' %}{% elif product.type_of_product == 'BAND' %}{% static 'images/wrist.png' %} {% elif product.type_of_product == 'TSHIRT' %}{% static 'images/tshirt.png' %}{% else %}{% static 'images/book.png' %}
-
-                            {% endif %}" style="width: 200px; height: auto;">
-                                        </div>
-                                    <form method="post">{% csrf_token %}
-                                        <div class="col-lg-8 col-sm-12">
-                                            {% render_field order_form.product type='hidden' value=product.id %}
-                                            <div class="form-group">
-                                                {% render_field order_form.name class="form-control" placeholder="Your Name" %}
-                                            </div>
-
-                                            <div class="form-group">
-                                                {% render_field order_form.email class="form-control" placeholder="Your Email" %}
-                                            </div>
-
-                                            <div class="form-group">
-                                                {% render_field order_form.phone_no class="form-control" placeholder="Your Phone Number"%}
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer d-flex justify-content-center">
-                                            <button class="btn btn-secondary" type="submit">Order Now</button>
-                                            <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-                {% empty %}
-                    <h4>There are currently no featured products...</h4>
-                {% endfor %}
-                <!-- /.feature-boxed -->
-            </div>
-        </div>
-    </div>
+{#                             <img src="{% if product.type_of_product == 'CUP' %}{% static 'images/cup.jpg' %}{% elif product.type_of_product == 'BAND' %}{% static 'images/wrist.png' %} {% elif product.type_of_product == 'TSHIRT' %}{% static 'images/tshirt.png' %}{% else %}{% static 'images/book.png' %}#}
+{##}
+{#                            {% endif %}" style="width: 100px; height: auto;">#}
+{#                        </div>#}
+{#                        <div class="widget-cta-content">#}
+{#                            <h4>Get this Amazing {{ product.type_of_product |lower }} with our amazing logo to motivate you</h4>#}
+{#                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#{{ product.id }}order">Order Now</a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                 <span> <br/><br/></span>#}
+{#                </div>#}
+{##}
+{#                     <div class="modal fade" id="{{ product.id }}order" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">#}
+{#                            <div class="modal-dialog" role="document">#}
+{#                                <div class="modal-content">#}
+{#                                    <div class="modal-header text-center">#}
+{#                                        <h4 class="modal-title w-100 font-weight-bold">Order your {{ product.type_of_product | lower}}</h4>#}
+{#                                    </div>#}
+{#                                        <div class="modal-body col-lg-4 col-sm-12">#}
+{#                                            <img src="{% if product.type_of_product == 'CUP' %}{% static 'images/cup.jpg' %}{% elif product.type_of_product == 'BAND' %}{% static 'images/wrist.png' %} {% elif product.type_of_product == 'TSHIRT' %}{% static 'images/tshirt.png' %}{% else %}{% static 'images/book.png' %}#}
+{##}
+{#                            {% endif %}" style="width: 200px; height: auto;">#}
+{#                                        </div>#}
+{#                                    <form method="post">{% csrf_token %}#}
+{#                                        <div class="col-lg-8 col-sm-12">#}
+{#                                            {% render_field order_form.product type='hidden' value=product.id %}#}
+{#                                            <div class="form-group">#}
+{#                                                {% render_field order_form.name class="form-control" placeholder="Your Name" %}#}
+{#                                            </div>#}
+{##}
+{#                                            <div class="form-group">#}
+{#                                                {% render_field order_form.email class="form-control" placeholder="Your Email" %}#}
+{#                                            </div>#}
+{##}
+{#                                            <div class="form-group">#}
+{#                                                {% render_field order_form.phone_no class="form-control" placeholder="Your Phone Number"%}#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                        <div class="modal-footer d-flex justify-content-center">#}
+{#                                            <button class="btn btn-secondary" type="submit">Order Now</button>#}
+{#                                            <button class="btn btn-default" data-dismiss="modal">Cancel</button>#}
+{#                                        </div>#}
+{#                                    </form>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{##}
+{##}
+{##}
+{#                {% empty %}#}
+{#                    <h4>There are currently no featured products...</h4>#}
+{#                {% endfor %}#}
+{#                <!-- /.feature-boxed -->#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
     <!-- /.feature-section -->
 
     <!--post-section -->
-    <div class="space-medium">
+    <div class="space-medium bg-gradient">
         <div class="container">
             <div class="row text-center">
             <h2>Recent Posts</h2><br/>
