@@ -34,3 +34,4 @@ admin.site.register(TeamMember)
 admin.site.register(Quote,QuoteAdmin)
 admin.site.register(TrainingTopic)
 admin.site.register(SliderImages)
+
