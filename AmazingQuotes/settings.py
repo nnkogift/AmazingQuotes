@@ -157,7 +157,10 @@ STATICFILES_DIRS = [
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = decouple.config('MEDIA_ROOT', default=os.path.join(BASE_DIR, 'media'))
+
 MEDIA_ROOT = decouple.config('MEDIA_ROOT', default=os.path.join(BASE_DIR, 'media'))
+
 
 SITE_ID = 1
 
