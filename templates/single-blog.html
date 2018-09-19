@@ -45,7 +45,9 @@
                         <span class="meta-date"><i class="fa fa-comments-o"></i> &nbsp;{% if count is 1 %}{{ count }} Comment {% else %}{{ count }} Comments{% endif %}</span>
                     <div class="meta"><a href="#" class="meta-categories text-primary">{{ post.category }}</a></div>
                     </div><br/>
-                     <div class="img-responsive"><img src="{{ post.image.url }}"></div>
+                     {% if post.image %}
+                         <div class="img-responsive"><img src="{{ post.image.url }}"></div>
+                     {% endif %}
                         <div class="post-holder">
                             <p>
                                 {{ post.content | linebreaks |rjust:0 }}
