@@ -24,7 +24,7 @@ google-cloud-storage==1.11.0
 google-resumable-media==0.3.1
 googleapis-common-protos==1.5.3
 gunicorn==19.9.0
-httplib2==0.11.3
+httplib2==0.18.0
 humanize==0.5.1
 idna==2.7
 oauth2client==4.1.2
